@@ -1,0 +1,61 @@
+T-WEB-501-REN_4/
+├── README.md
+├── app/
+│   ├── api/
+│   │   ├── api_versions_index.js
+│   │   └── v1/
+│   │       ├── v1_index.js
+│   │       ├── auth_endpoints.js
+│   │       ├── user_endpoints.js # API user POST (Create) GET (Read) PUT (Update) DELETE (Delete) => CRUD
+│   │       ├── candidate_profile_endpoint.js ~60 lignes de code
+│   │       ├── recruiter_profile_endpoints.js
+│   │       ├── job_ad_endpoints.js
+│   │       ├── job_application_endpoints.js
+│   │       └── company_endpoints.js
+│   ├── models/
+│   │   ├── base_model.js   ~ 10 lignes de code
+│   │   ├── user_model.js
+│   │   ├── candidate_profile.js
+│   │   ├── recruiter_ptofile.js
+│   │   ├── job_application.js
+│   │   ├── job_add.js
+│   │   └── company.js
+│   ├── persistence/
+│   │   └── prisma.js
+│   ├── middleware/
+│           ├── auth.js ~ 10 lignes
+│   └── services/
+│       ├── app_facade.js ~ 10 lignes
+│       ├── cross_entity_managers/
+│       │   └── ? ~ 60-80 lignes
+│       └── facades/
+│           ├── base_facade.js ~60-100 lignes de code
+│           ├── user_facade.js
+│           ├── candidate_profile_facade.js
+│           ├── recruiter_ptofile_facade.js
+│           ├── job_add_facade.js
+│           ├── job_application_facade.js
+│           └── company_facadejs
+├── config.js
+├── run.js
+
+
+├── client/
+│   ├── js/
+│       ├── index.js
+│       ├── ...
+│   ├── css/
+│      ├── style.css
+│      ├── ...
+│   ├── resources/
+│       ├── images/
+│       ├── icons/
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── register_recruiter.html
+│   ├── register_candidate.html
+│   ├── make_application.html
+│   ├── job_ad.html
+│   ├── add_company.html
+│   ├── admin dashboard.html
