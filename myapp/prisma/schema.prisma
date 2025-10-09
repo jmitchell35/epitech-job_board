@@ -13,3 +13,114 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id                String             @id @default(uuid()) @db.Uuid @map("user_id")
+
+  email             String             @unique @db.VarChar(255)
+  password          String             @db.VarChar(255)
+  profile           String             @db.VarChar(20) @default("USER")
+
+  candidateProfile  Candidate?
+  recruiterProfile  Recruiter?
+  application       Application[]
+  advertisements    Advertisement[]
+
+  createdAt         DateTime           @default(now()) @map("created_at")
+  updatedAt         DateTime           @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Recruiter {
+  id                String             @id @default(uuid()) @db.Uuid @map("profile_id")
+
+  application_email String             @db.VarChar(255)
+
+  user              User               @relation(fields: [recruiterId], references: [id])
+  recruiterId       String             @unique @db.Uuid
+  company           Company            @relation(fields: [companyId], references: [id])
+  companyId         String             @db.Uuid
+
+  createdAt         DateTime           @default(now()) @map("created_at")
+  updatedAt         DateTime           @updatedAt @map("updated_at")
+
+  @@map("recruiter_profiles")
+}
+
+model Candidate {
+  id                String             @id @default(uuid()) @db.Uuid @map("profile_id")
+
+  firstName         String             @db.VarChar(255) @map("first_name")
+  lastName          String             @db.VarChar(255) @map("last_name")
+  phone             String             @db.VarChar(255)
+  message           String
+
+  user              User               @relation(fields: [candidateId], references: [id])
+  candidateId       String             @unique @db.Uuid
+
+  createdAt         DateTime           @default(now()) @map("created_at")
+  updatedAt         DateTime           @updatedAt @map("updated_at")
+
+  @@map("candidate_profiles")
+}
+
+model Company {
+  id                String             @id @default(uuid()) @db.Uuid @map("company_id")
+
+  name              String             @db.VarChar(255)
+  industry          String             @db.VarChar(255)
+  contactEmail      String             @db.VarChar(255)
+  headOffice        String             @db.VarChar(255)
+
+  recruiters        Recruiter[]
+  advertisements    Advertisement[]
+
+  createdAt         DateTime           @default(now()) @map("created_at")
+  updatedAt         DateTime           @updatedAt @map("updated_at")
+
+  @@map("company")
+}
+
+model Application {
+  id                String             @id @default(uuid()) @db.Uuid @map("application_id")
+
+  message           String             
+  candidateEmail    String             @db.VarChar(255)
+  firstName         String             @db.VarChar(255)
+  lastName          String             @db.VarChar(255)
+  phone             String             @db.VarChar(255)
+           
+  user              User               @relation(fields: [candidateId], references: [id])
+  candidateId       String             @db.Uuid
+  jobAdvertisement  Advertisement      @relation(fields: [advertisementId], references: [id])
+  advertisementId   String             @db.Uuid
+
+  createdAt         DateTime           @default(now()) @map("created_at")
+  updatedAt         DateTime           @updatedAt @map("updated_at")
+
+  @@map("applications")
+}
+
+model Advertisement {
+  id                String             @id @default(uuid()) @db.Uuid @map("advertisement_id")
+
+  title             String             @db.VarChar(255)
+  shortDescription  String             @db.VarChar(255) @map("short_description")
+  fullDescription   String             @db.VarChar(255) @map("full_description")
+  wages             String             @db.VarChar(255)
+  city              String             @db.VarChar(255)
+  workingTime       String             @db.VarChar(255)
+  remoteWork        String             @db.VarChar(255)
+
+  company           Company            @relation(fields: [companyId], references: [id])
+  companyId         String             @db.Uuid
+  user              User               @relation(fields: [recruiterId], references: [id])
+  recruiterId       String             @db.Uuid
+  applications      Application[]
+
+  createdAt         DateTime           @default(now()) @map("created_at")
+  updatedAt         DateTime           @updatedAt @map("updated_at")
+
+  @@map("advertisements")
+}
