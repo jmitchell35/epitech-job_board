@@ -3,32 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Offres d'emploi</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Job Board - Accueil</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800">
 
-  <h1>Nos Offres d'Emploi</h1>
-
-  <div class="job-container">
-    <div class="job-card">
-      <h2>Développeur Front-end</h2>
-      <p>Nous recherchons un développeur passionné par les interfaces utilisateurs modernes et les technologies web.</p>
-      <button>En savoir plus</button>
+  <header class="bg-green-700 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Job Board</h1>
+      <nav class="space-x-6">
+        <a href="index.html" class="hover:underline">Accueil</a>
+        <a href="login.html" class="hover:underline">Connexion</a>
+        <a href="register.html" class="hover:underline">Inscription</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="job-card">
-      <h2>Développeur Back-end</h2>
-      <p>Nous recherchons un développeur passionné par les interfaces utilisateurs modernes et les technologies web.</p>
-      <button>En savoir plus</button>
-    </div>
+  <main class="container mx-auto p-6">
+    <section class="text-center mb-10">
+      <h2 class="text-3xl font-bold mb-2">Les dernières offres d'emploi</h2>
+      <p class="text-gray-600">Découvrez des opportunités dans tous les secteurs !</p>
+    </section>
 
-    <div class="job-card">
-      <h2>Développeur Full-stack</h2>
-      <p>Nous recherchons un développeur passionné par les interfaces utilisateurs modernes et les technologies web.</p>
-      <button>En savoir plus</button>
-    </div>
-  </div>
+    <section class="grid md:grid-cols-3 sm:grid-cols-2 gap-6 job-container">
+      <p class="text-center col-span-3 text-gray-500">Chargement des offres...</p>
+    </section>
+  </main>
 
+  <footer class="text-center text-gray-500 p-4 bg-gray-100">
+    2025 Job Board
+  </footer>
 </body>
 </html>
