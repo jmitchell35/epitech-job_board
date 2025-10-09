@@ -58,4 +58,4 @@ T-WEB-501-REN_4/
 │   ├── make_application.html
 │   ├── job_ad.html
 │   ├── add_company.html
-│   ├── admin dashboard.html
+│   ├── admin_dashboard.html
