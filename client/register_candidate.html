@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscription - Candidat</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <header class="bg-green-700 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Inscription Candidat</h1>
+      <a href="register.html" class="hover:underline">Retour</a>
+    </div>
+  </header>
+
+  <main class="container mx-auto p-8">
+    <form id="candidate-form" class="bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto space-y-4">
+      <h2 class="text-xl font-semibold mb-4 text-center">Créer votre compte candidat</h2>
+
+      <div class="grid grid-cols-2 gap-4">
+        <input name="first_name" placeholder="Prénom" class="border p-2 rounded" required />
+        <input name="last_name" placeholder="Nom" class="border p-2 rounded" required />
+      </div>
+
+      <input type="email" name="email" placeholder="Email" class="w-full border p-2 rounded" required />
+      <input type="password" name="password" placeholder="Mot de passe" class="w-full border p-2 rounded" required />
+      <input name="phone" placeholder="Téléphone" class="w-full border p-2 rounded" required />
+
+      <textarea name="message" placeholder="Message de présentation (optionnel)" class="w-full border p-2 rounded h-32"></textarea>
+
+      <button type="submit" class="bg-green-600 hover:bg-green-700 text-white w-full py-2 rounded">
+        Créer mon profil
+      </button>
+    </form>
+
+    <div id="msg" class="text-center mt-4 text-green-600 font-medium"></div>
+  </main>
+
+  <footer class="text-center text-gray-500 p-4 bg-gray-100">
+    2025 Job Board
+  </footer>
+</body>
+</html>
