@@ -3,34 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Offres d'emploi</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Connexion</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800">
 
-  <h1>Connexion</h1>
-
-  <div class="job-container">
-    <div class="job-card">
-
-      <form  action"#" id="login-form">
-
-        <div class="form-group">
-          <label for="email">Enter your email:</label>
-          <input type="text" id="email" name="email" required>
-        </div>
-
-        <div class="form-group">
-          <label for="password">Password :</label>
-          <input type="text" id="password" name="password" required>
-        </div>
-
-        <button type="submit">Send !</button>
-
-      </form>
-
+  <header class="bg-green-700 text-white p-4 shadow-md">
+    <div class="container mx-auto text-center">
+      <h1 class="text-2xl font-bold">Connexion</h1>
+      <nav class="space-x-6">
+        <a href="index.html" class="hover:underline">Accueil</a>
+        <a href="login.html" class="hover:underline">Connexion</a>
+        <a href="register.html" class="hover:underline">Inscription</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
+  <main class="container mx-auto p-8">
+    <form id="login-form" class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto space-y-4">
+      <h2 class="text-xl font-semibold mb-4 text-center">Se connecter</h2>
+
+      <input type="email" name="email" placeholder="Email" class="w-full border p-2 rounded" required>
+      <input type="password" name="password" placeholder="Mot de passe" class="w-full border p-2 rounded" required>
+
+      <button type="submit" class="bg-green-600 hover:bg-green-700 text-white w-full py-2 rounded">
+        Connexion
+      </button>
+    </form>
+
+    <p class="text-center mt-4 text-gray-600">
+      Pas encore de compte ? 
+      <a href="register.html" class="text-green-700 font-semibold hover:underline">S'inscrire</a>
+    </p>
+  </main>
+
+  <footer class="text-center text-gray-500 p-4 bg-gray-100">
+    2025 Job Board
+  </footer>
 </body>
 </html>
