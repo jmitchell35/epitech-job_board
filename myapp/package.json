@@ -4,9 +4,7 @@
   "description": "Simple job board",
   "main": "job_board.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate:dev": "DATABASE_URL=$DATABASE_URL npx prisma migrate dev"
-
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
