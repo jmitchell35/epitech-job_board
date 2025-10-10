@@ -27,7 +27,7 @@ candidateRouter.get('/:uuid', (req, res) => {
 })
 
 candidateRouter.post('/', (req, res) => {
-  const promise = candidateGateway.post(req.body);
+  const promise = candidateGateway.create(req.body);
   promise.then((data) => {
     res.send(data);
   })
@@ -37,7 +37,7 @@ candidateRouter.post('/', (req, res) => {
 })
 
 candidateRouter.put('/:uuid', (req, res) => {
-  const promise = candidateGateway.put(req.body);
+  const promise = candidateGateway.update(req.params.uuid, req.body);
   promise.then((data) => {
     res.send(data);
   })
@@ -47,7 +47,7 @@ candidateRouter.put('/:uuid', (req, res) => {
 })
 
 candidateRouter.delete('/:uuid', (req, res) => {
-  const promise = candidateGateway.delete(req.body);
+  const promise = candidateGateway.delete(req.params.uuid);
   promise.then((data) => {
     res.send(data);
   })
