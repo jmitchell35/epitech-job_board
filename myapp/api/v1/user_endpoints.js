@@ -1,6 +1,6 @@
 // Still need the express class
 import express from 'express';
-import userGateway from '../../gateways/company_gateway.js';
+import userGateway from '../../gateways/user_gateway.js';
 
 
 // instanciate a router object for v1 routes

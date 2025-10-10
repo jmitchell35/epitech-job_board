@@ -1,6 +1,6 @@
 // Still need the express class
 import express from 'express';
-import jobAdGateway from '../../gateways/job_ad_gateway.js';
+import jobAdGateway from '../../gateways/advertisement_gateway.js';
 
 // instanciate a router object for v1 routes
 const jobAdRouter = express.Router({mergeParams: true});
