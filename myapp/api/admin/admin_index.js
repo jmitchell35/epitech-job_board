@@ -1,5 +1,5 @@
 // Still need the express class
-const express = require('express');
+import express from 'express';
 
 // instanciate a router object for v1 routes
 const adminRouter = express.Router({mergeParams: true});
@@ -20,4 +20,4 @@ const adminRouter = express.Router({mergeParams: true});
 // adminRouter.use('/job_application', jobAppAdminRouterRouter);
 // adminRouter.use('/company', companyAdminRouter);
 
-module.exports = adminRouter;
+export default adminRouter;

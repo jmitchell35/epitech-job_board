@@ -1,11 +1,10 @@
 // Importing the app class and methods
-const express = require('express');
-
-const { PrismaClient } = require('./generated/prisma');
-const prisma = new PrismaClient();
-
+import express from 'express';
+// import prisma client
+import prisma from './persistence/prisma.js';
 // import the api_routes to use them in the app (keep things modular)
-const api_versions_index = require('./api/api_versions_index');
+import apiVersionsRouter from './api/api_versions_index.js';
+
 
 // Create an instance of an express app object (calls express class constructor) which will be our main app
 const app = express();
@@ -14,7 +13,7 @@ const app = express();
 const port = 3000;
 
 // Use the api routes with the app
-app.use('/', api_versions_index);
+app.use('/', apiVersionsRouter);
 
 // Test Prisma connection
 prisma.$connect()
