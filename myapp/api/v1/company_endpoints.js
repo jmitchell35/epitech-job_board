@@ -16,4 +16,24 @@ companyRouter.get('/', (req, res) => {
   });
 })
 
+companyRouter.get('/:uuid', (req, res) => {
+  const promise = companyGateway.get(req.params.uuid);
+  promise.then((data) => {
+    res.send(data);
+  })
+  .catch((error) => {
+    res.send(error);
+  });
+})
+
+companyRouter.post('/', (req, res) => {
+  const promise = companyGateway.post(req.body);
+  promise.then((data) => {
+    res.send(data);
+  })
+  .catch((error) => {
+    res.send(error);
+  });
+})
+
 export default companyRouter;
