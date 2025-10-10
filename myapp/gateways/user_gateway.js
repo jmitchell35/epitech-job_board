@@ -44,3 +44,5 @@ class UserGateway {
     return updatedData;
   }
 }
+
+export default new UserGateway();
