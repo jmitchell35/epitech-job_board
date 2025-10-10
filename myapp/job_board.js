@@ -12,6 +12,11 @@ const app = express();
 // Set the port on which our application will listen
 const port = 3000;
 
+// Middle-wares to read request bodies
+app.use(express.json());                         // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+
 // Use the api routes with the app
 app.use('/', apiVersionsRouter);
 
