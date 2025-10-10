@@ -27,7 +27,27 @@ companyRouter.get('/:uuid', (req, res) => {
 })
 
 companyRouter.post('/', (req, res) => {
-  const promise = companyGateway.post(req.body);
+  const promise = companyGateway.create(req.body);
+  promise.then((data) => {
+    res.send(data);
+  })
+  .catch((error) => {
+    res.send(error);
+  });
+})
+
+companyRouter.put('/:uuid', (req, res) => {
+  const promise = companyGateway.update(req.params.uuid, req.body);
+  promise.then((data) => {
+    res.send(data);
+  })
+  .catch((error) => {
+    res.send(error);
+  });
+})
+
+companyRouter.delete('/:uuid', (req, res) => {
+  const promise = companyGateway.delete(req.params.uuid);
   promise.then((data) => {
     res.send(data);
   })
