@@ -1,5 +1,5 @@
 // Still need the express class
-const express = require('express');
+import express from 'express';
 
 // instanciate a router object for v1 routes
 const jobApplicationRouter = express.Router({mergeParams: true});
@@ -9,4 +9,4 @@ jobApplicationRouter.get('/', (req, res) => {
   res.send('Hello World!');
 })
 
-module.exports = jobApplicationRouter;
+export default jobApplicationRouter;

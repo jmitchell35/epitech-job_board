@@ -1,12 +1,39 @@
 // Still need the express class
-const express = require('express');
+import express from 'express';
+import companyGateway from '../../gateways/company_gateway.js';
 
 // instanciate a router object for v1 routes
 const companyRouter = express.Router({mergeParams: true});
 
 // use it
 companyRouter.get('/', (req, res) => {
-  res.send('Hello World!');
+  const promise = companyGateway.getAll();
+  promise.then((data) => {
+    res.send(data);
+  })
+  .catch((error) => {
+    res.send(error);
+  });
 })
 
-module.exports = companyRouter;
+companyRouter.get('/:uuid', (req, res) => {
+  const promise = companyGateway.get(req.params.uuid);
+  promise.then((data) => {
+    res.send(data);
+  })
+  .catch((error) => {
+    res.send(error);
+  });
+})
+
+companyRouter.post('/', (req, res) => {
+  const promise = companyGateway.post(req.body);
+  promise.then((data) => {
+    res.send(data);
+  })
+  .catch((error) => {
+    res.send(error);
+  });
+})
+
+export default companyRouter;
