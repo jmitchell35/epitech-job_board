@@ -27,7 +27,7 @@ jobAdRouter.get('/:uuid', (req, res) => {
 });
 
 jobAdRouter.post('/', (req, res) => {
-  const promise = jobAdGateway.post(req.body);
+  const promise = jobAdGateway.create(req.body);
   promise.then((data) => {
     res.send(data);
   })
@@ -37,7 +37,7 @@ jobAdRouter.post('/', (req, res) => {
 });
 
 jobAdRouter.put('/:uuid', (req, res) => {
-  const promise = jobAdGateway.put(req.params.uuid, req.body);
+  const promise = jobAdGateway.update(req.params.uuid, req.body);
   promise.then((data) => {
     res.send(data);
   })

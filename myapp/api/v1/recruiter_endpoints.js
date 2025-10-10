@@ -27,7 +27,7 @@ recruiterRouter.get('/:uuid', (req, res) => {
 });
 
 recruiterRouter.post('/', (req, res) => {
-  const promise = recruiterGateway.post(req.body);
+  const promise = recruiterGateway.create(req.body);
   promise.then((data) => {
     res.send(data);
   })
@@ -37,7 +37,7 @@ recruiterRouter.post('/', (req, res) => {
 });
 
 recruiterRouter.put('/:uuid', (req, res) => {
-  const promise = recruiterGateway.put(req.params.uuid, req.body);
+  const promise = recruiterGateway.update(req.params.uuid, req.body);
   promise.then((data) => {
     res.send(data);
   })
