@@ -28,7 +28,9 @@ class UserGateway {
   }
 
   async create(jsonData) {
-    let createdData = await prisma.user.create(jsonData)
+    let createdData = await prisma.user.create({
+      data: jsonData
+    })
     console.log(createdData);
     return createdData;
   }
@@ -42,6 +44,15 @@ class UserGateway {
     });
     console.log(updatedData);
     return updatedData;
+  }
+
+  async delete(uuid) {
+    let deletedData = await prisma.user.delete({
+      where: {
+        id: uuid
+      }});
+    console.log(deletedData);
+    return deletedData;
   }
 }
 

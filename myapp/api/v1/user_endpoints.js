@@ -29,11 +29,13 @@ userRouter.get('/:uuid', (req, res) => {
 })
 
 userRouter.post('/', (req, res) => {
+  console.log(req.body);
   const promise = userGateway.create(req.body);
   promise.then((data) => {
     res.send(data);
   })
   .catch((error) => {
+    console.log(error);
     res.send(error);
   });
 })
