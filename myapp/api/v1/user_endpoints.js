@@ -39,7 +39,7 @@ userRouter.post('/', (req, res) => {
 })
 
 userRouter.put('/:uuid', (req, res) => {
-  const promise = userGateway.update(uuid, req.body);
+  const promise = userGateway.update(req.params.uuid, req.body);
   promise.then((data) => {
     res.send(data);
   })
@@ -49,7 +49,7 @@ userRouter.put('/:uuid', (req, res) => {
 })
 
 userRouter.delete('/:uuid', (req, res) => {
-  const promise = userGateway.delete(uuid);
+  const promise = userGateway.delete(req.params.uuid);
   promise.then((data) => {
     res.send(data);
   })

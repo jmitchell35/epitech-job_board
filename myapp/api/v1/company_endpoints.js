@@ -37,7 +37,7 @@ companyRouter.post('/', (req, res) => {
 })
 
 companyRouter.put('/:uuid', (req, res) => {
-  const promise = companyGateway.update(uuid, req.body);
+  const promise = companyGateway.update(req.params.uuid, req.body);
   promise.then((data) => {
     res.send(data);
   })
@@ -47,7 +47,7 @@ companyRouter.put('/:uuid', (req, res) => {
 })
 
 companyRouter.delete('/:uuid', (req, res) => {
-  const promise = companyGateway.delete(uuid);
+  const promise = companyGateway.delete(req.params.uuid);
   promise.then((data) => {
     res.send(data);
   })
