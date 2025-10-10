@@ -18,7 +18,9 @@ class CompanyGateway {
   }
 
   async create(jsonData) {
-    let createdData = await prisma.company.create(jsonData)
+    let createdData = await prisma.company.create({
+      data: jsonData
+    })
     console.log(createdData);
     return createdData;
   }

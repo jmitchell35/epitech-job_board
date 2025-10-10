@@ -12,6 +12,7 @@ companyRouter.get('/', (req, res) => {
     res.send(data);
   })
   .catch((error) => {
+    console.log(error);
     res.send(error);
   });
 })
@@ -22,6 +23,7 @@ companyRouter.get('/:uuid', (req, res) => {
     res.send(data);
   })
   .catch((error) => {
+    console.log(error);
     res.send(error);
   });
 })
@@ -32,6 +34,7 @@ companyRouter.post('/', (req, res) => {
     res.send(data);
   })
   .catch((error) => {
+    console.log(error);
     res.send(error);
   });
 })
@@ -42,6 +45,7 @@ companyRouter.put('/:uuid', (req, res) => {
     res.send(data);
   })
   .catch((error) => {
+    console.log(error);
     res.send(error);
   });
 })
@@ -52,6 +56,7 @@ companyRouter.delete('/:uuid', (req, res) => {
     res.send(data);
   })
   .catch((error) => {
+    console.log(error);
     res.send(error);
   });
 })
