@@ -14,6 +14,7 @@ userRouter.get('/', (req, res) => {
       res.send(data);
     })
     .catch((error) => {
+      console.log(error);
       res.send(error);
     });
 })
@@ -24,6 +25,7 @@ userRouter.get('/:uuid', (req, res) => {
       res.send(data);
     })
     .catch((error) => {
+      console.log(error);
       res.send(error);
     });
 })
@@ -46,6 +48,7 @@ userRouter.put('/:uuid', (req, res) => {
     res.send(data);
   })
   .catch((error) => {
+    console.log(error);
     res.send(error);
   });
 })
@@ -56,6 +59,7 @@ userRouter.delete('/:uuid', (req, res) => {
     res.send(data);
   })
   .catch((error) => {
+    console.log(error);
     res.send(error);
   });
 })
