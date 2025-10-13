@@ -16,10 +16,10 @@ import companyRouter from './company_endpoints.js';
 // use it
 v1Router.use('/auth', authRouter);
 v1Router.use('/users', userRouter);
-v1Router.use('/candidate', candidateRouter);
-v1Router.use('/recruiter', recruiterRouter);
-v1Router.use('/job_advertisement', jobAdRouter);
-v1Router.use('/job_application', jobAppRouter);
+v1Router.use('/candidates', candidateRouter);
+v1Router.use('/recruiters', recruiterRouter);
+v1Router.use('/job_advertisements', jobAdRouter);
+v1Router.use('/job_applications', jobAppRouter);
 v1Router.use('/companies', companyRouter);
 
 export default v1Router;
