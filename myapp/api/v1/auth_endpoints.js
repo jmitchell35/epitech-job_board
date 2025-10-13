@@ -17,11 +17,17 @@ authRouter.post('/login', (req, res) => {
 
     if (user !== null && password === user.password) {
       // Encodage du JWT via la variable d'environnement JWT_SECRET
+      const { email, profile } = user;
       const jwtToken = jwt.sign({ email, profile }, process.env.JWT_SECRET, {
         expiresIn: "1d",
       });
 
-      res.cookie("jwtToken", jwtToken, { httpOnly: true, secure: true });
+      res.cookie("jwtToken", jwtToken, {
+        httpOnly: true,
+        // secure: true,
+        sameSite: 'lax',
+        maxAge: 24 * 60 * 60 * 1000
+      });
       res.json(jwtToken);
     } else {
 		  res.status(401).json({ message: "Identifiants incorrects." });

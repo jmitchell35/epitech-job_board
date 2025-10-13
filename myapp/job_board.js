@@ -8,9 +8,16 @@ import apiVersionsRouter from './api/api_versions_index.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+
 
 // Create an instance of an express app object (calls express class constructor) which will be our main app
 const app = express();
+app.use(cors({
+  origin: 'http://localhost:5500',
+  credentials: true
+}));
 
 // Set the port on which our application will listen
 const port = 3000;
@@ -18,6 +25,7 @@ const port = 3000;
 // Middle-wares to read request bodies
 app.use(express.json());                         // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(cookieParser());
 
 
 // Use the api routes with the app
