@@ -15,7 +15,7 @@ import cookieParser from 'cookie-parser';
 // Create an instance of an express app object (calls express class constructor) which will be our main app
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:5500',
+  origin: 'http://127.0.0.1:5500',
   credentials: true
 }));
 
