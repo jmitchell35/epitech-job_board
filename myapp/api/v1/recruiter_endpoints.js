@@ -13,6 +13,7 @@ recruiterRouter.get('/', (req, res) => {
   })
   .catch((error) => {
     res.send(error);
+    console.log(error);
   });
 });
 
@@ -23,6 +24,7 @@ recruiterRouter.get('/:uuid', (req, res) => {
   })
   .catch((error) => {
     res.send(error);
+    console.log(error);
   });
 });
 
@@ -33,6 +35,7 @@ recruiterRouter.post('/', (req, res) => {
   })
   .catch((error) => {
     res.send(error);
+    console.log(error);
   });
 });
 
@@ -43,6 +46,7 @@ recruiterRouter.put('/:uuid', (req, res) => {
   })
   .catch((error) => {
     res.send(error);
+    console.log(error);
   });
 });
 
@@ -53,6 +57,7 @@ recruiterRouter.delete('/:uuid', (req, res) => {
   })
   .catch((error) => {
     res.send(error);
+    console.log(error);
   });
 });
 
