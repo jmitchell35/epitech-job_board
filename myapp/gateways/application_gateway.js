@@ -18,7 +18,9 @@ class ApplicationGateway {
   }
 
   async create(jsonData) {
-    let createdData = await prisma.application.create(jsonData)
+    let createdData = await prisma.application.create({
+      data: jsonData
+    })
     console.log(createdData);
     return createdData;
   }
