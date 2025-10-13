@@ -4,6 +4,9 @@ import express from 'express';
 import prisma from './persistence/prisma.js';
 // import the api_routes to use them in the app (keep things modular)
 import apiVersionsRouter from './api/api_versions_index.js';
+// import dot env and config environment to enable variable use through the app
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 // Create an instance of an express app object (calls express class constructor) which will be our main app
