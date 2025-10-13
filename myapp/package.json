@@ -5,7 +5,8 @@
   "main": "job_board.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch job_board.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,8 +15,12 @@
     "@prisma/client": "^6.17.0",
     "@prisma/extension-accelerate": "^2.0.2",
     "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
+    "jsonwebtoken": "^9.0.2",
     "pg": "^8.16.3",
     "pg-promise": "^12.2.0",
     "prisma": "^6.17.0"
