@@ -18,7 +18,7 @@ class AdvertisementGateway {
   }
 
   async create(jsonData) {
-    let createdData = await prisma.advertisement.create(jsonData)
+    let createdData = await prisma.advertisement.create({data: jsonData})
     console.log(createdData);
     return createdData;
   }

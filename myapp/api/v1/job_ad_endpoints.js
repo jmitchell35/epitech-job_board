@@ -13,6 +13,7 @@ jobAdRouter.get('/', (req, res) => {
   })
   .catch((error) => {
     res.send(error);
+    console.log(error);
   });
 });
 
@@ -23,6 +24,7 @@ jobAdRouter.get('/:uuid', (req, res) => {
   })
   .catch((error) => {
     res.send(error);
+    console.log(error);
   });
 });
 
@@ -33,6 +35,7 @@ jobAdRouter.post('/', (req, res) => {
   })
   .catch((error) => {
     res.send(error);
+    console.log(error);
   });
 });
 
@@ -43,6 +46,7 @@ jobAdRouter.put('/:uuid', (req, res) => {
   })
   .catch((error) => {
     res.send(error);
+    console.log(error);
   });
 });
 
@@ -53,6 +57,7 @@ jobAdRouter.delete('/:uuid', (req, res) => {
   })
   .catch((error) => {
     res.send(error);
+    console.log(error);
   });
 });
 
