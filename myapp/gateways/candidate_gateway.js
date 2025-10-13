@@ -17,8 +17,12 @@ class CandidateGateway {
     return data;
   }
 
+
+
   async create(jsonData) {
-    let createdData = await prisma.candidate.create(jsonData)
+    let createdData = await prisma.candidate.create({
+      data: jsonData
+  })
     console.log(createdData);
     return createdData;
   }
