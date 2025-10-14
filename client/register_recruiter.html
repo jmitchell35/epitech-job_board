@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inscription - Recruteur</title>
-  <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<script src="js/add_company.js"></script>
 <body class="bg-gray-50 text-gray-800">
 
   <header class="bg-blue-700 text-white p-4 shadow-md">
@@ -16,23 +16,47 @@
   </header>
 
   <main class="container mx-auto p-8">
+
     <form id="recruiter-form" class="bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto space-y-4">
-      <h2 class="text-xl font-semibold mb-4 text-center">Créer votre compte recruteur</h2>
+      <h2 class="text-xl font-semibold mb-4 text-center">Créer votre compte recruteur :</h2>
 
       <input type="email" name="email" placeholder="Email professionnel" class="w-full border p-2 rounded" required />
       <input type="password" name="password" placeholder="Mot de passe" class="w-full border p-2 rounded" required />
       <input type="email" name="application_email" placeholder="Email de réception des candidatures" class="w-full border p-2 rounded" required />
 
-      <select name="company" class="w-full border p-2 rounded" required>
-        <option value="">-- Sélectionnez votre entreprise --</option>
-      </select>
+      <div class="flex gap-2 items-center">
+        <select id="company-select" name="companyName" class="flex-1 border p-2 rounded" required>
+          <option value="">Sélectionnez votre entreprise</option>
+        </select>
+        <button type="button" id="toggle-company-form" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
+          Nouvelle entreprise
+        </button>
+      </div>
 
       <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white w-full py-2 rounded">
         Créer mon compte recruteur
       </button>
     </form>
 
-    <div id="msg" class="text-center mt-4 text-green-600 font-medium"></div>
+    <form id="company-form" class="bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto space-y-4 mt-6 hidden">
+      <h3 class="text-lg font-semibold text-center">Ajoutez votre entreprise :</h3>
+
+      <input name="name" placeholder="Nom de l'entreprise" class="w-full border p-2 rounded" required />
+      <input name="industry" placeholder="Secteur d'activité" class="w-full border p-2 rounded" required />
+      <input type="email" name="contactEmail" placeholder="Email de contact" class="w-full border p-2 rounded" required />
+      <input name="headOffice" placeholder="Adresse du siège social" class="w-full border p-2 rounded" required />
+
+      <div class="flex gap-2">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white w-full py-2 rounded">
+          Ajouter l'entreprise
+        </button>
+        <button type="button" id="cancel-company" class="bg-gray-400 hover:bg-gray-500 text-white w-full py-2 rounded">
+          Annuler
+        </button>
+      </div>
+    </form>
+
+    <div id="msg" class="text-center mt-4 text-blue-600 font-medium"></div>
   </main>
 
   <script src = "js/recruiter_signup.js"></script>
@@ -41,5 +65,7 @@
   <footer class="text-center text-gray-500 p-4 bg-gray-100">
     2025 Job Board
   </footer>
+
+  <script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>
