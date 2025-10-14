@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créer une offre - Espace Recruteur</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-50 text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-blue-700 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Espace Recruteur</h1>
+      <nav class="space-x-6">
+        <a href="recruiter_dashboard.html" class="hover:underline">Tableau de bord</a>
+        <a href="recruiter_offers.html" class="hover:underline">Mes offres</a>
+        <a href="recruiter_applications.html" class="hover:underline">Candidatures reçues</a>
+        <button id="logout-button" class="hover:underline text-red-200">Déconnexion</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container mx-auto p-8">
+    <section class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-md">
+      <h2 class="text-2xl font-semibold mb-6 text-blue-700 text-center">Créer une nouvelle offre d’emploi</h2>
+
+      <form id="create-offer-form" class="space-y-4">
+        <input type="text" name="title" placeholder="Titre du poste" class="w-full border p-2 rounded" required />
+        <input type="text" name="location" placeholder="Lieu du poste" class="w-full border p-2 rounded" required />
+        <input type="text" name="contractType" placeholder="Type de contrat (CDI, CDD, Stage...)" class="w-full border p-2 rounded" required />
+        <textarea name="description" placeholder="Description du poste" rows="5" class="w-full border p-2 rounded" required></textarea>
+
+        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white w-full py-2 rounded">
+          Publier l’offre
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="text-center text-gray-500 p-4 bg-gray-100">
+    2025 Job Board — Espace Recruteur
+  </footer>
+
+  <script src="./js/recruiter_create_offer.js"></script>
+</body>
+
+</html>

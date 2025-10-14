@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espace Recruteur - Tableau de bord</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-50 text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-blue-700 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Espace Recruteur</h1>
+      <nav class="space-x-6">
+        <a href="recruiter_offers.html" class="hover:underline">Mes offres</a>
+        <a href="recruiter_applications.html" class="hover:underline">Candidatures reçues</a>
+        <button id="logout-button" class="hover:underline text-red-200">Déconnexion</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container mx-auto p-6">
+
+    <!-- Section d'introduction -->
+    <section class="text-center mb-10">
+      <h2 class="text-3xl font-bold mb-2 text-blue-700">Bienvenue sur votre espace recruteur</h2>
+      <p class="text-gray-600 mb-6">
+        Gérez vos offres d’emploi, suivez les candidatures reçues et publiez de nouvelles opportunités pour votre entreprise.
+      </p>
+
+      <!-- Boutons d’action principaux -->
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="recruiter_offers.html" class="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg shadow-md transition">
+          📋 Voir mes offres
+        </a>
+        <a href="recruiter_applications.html" class="bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg shadow-md transition">
+          👥 Voir les candidatures
+        </a>
+        <a href="recruiter_create_offer.html" class="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg shadow-md transition">
+          ➕ Créer une offre
+        </a>
+      </div>
+    </section>
+
+    <!-- Section des offres -->
+    <section>
+      <h3 class="text-2xl font-semibold mb-6 text-blue-700 text-center">Toutes les offres disponibles</h3>
+      <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6 job-container">
+        <p class="text-center col-span-3 text-gray-500">Chargement des offres...</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="text-center text-gray-500 p-4 bg-gray-100">
+    2025 Job Board — Espace Recruteur
+  </footer>
+
+  <script src="./js/recruiter_dashboard.js"></script>
+</body>
+
+</html>
