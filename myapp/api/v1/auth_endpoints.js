@@ -18,8 +18,8 @@ authRouter.post('/login', (req, res) => {
 
     if (user !== null && password === user.password) {
       // Encodage du JWT via la variable d'environnement JWT_SECRET
-      const { email, profile } = user;
-      const jwtToken = genAuthToken({ email, profile });
+      const { id, email, profile } = user;
+      const jwtToken = genAuthToken({ id, email, profile });
 
       res.cookie("authToken", jwtToken, {
         httpOnly: true,

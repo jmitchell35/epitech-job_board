@@ -36,8 +36,8 @@ userRouter.post('/', (req, res) => {
   console.log(req.body);
   const promise = userGateway.create(req.body);
   promise.then((data) => {
-    const { email, profile } = data;
-    const jwtToken = genAuthToken({ email, profile });
+    const { id, email, profile } = data;
+    const jwtToken = genAuthToken({ id, email, profile });
 
     res.cookie("authToken", jwtToken, {
       httpOnly: true,
