@@ -36,7 +36,7 @@ candidateForm.addEventListener("submit", async (evt) => {
             message: candidateForm.message.value,
             firstName: candidateForm.first_name.value,
             lastName: candidateForm.last_name.value,
-            user: { connect: { id: userId } }
+            candidateId: userId
         })
     });
 
