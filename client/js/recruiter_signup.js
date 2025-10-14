@@ -14,7 +14,7 @@ recruiterForm.addEventListener("submit", async (evt) => {
         body:JSON.stringify({ 
             email: recruiterForm.email.value,
             password: recruiterForm.password.value,
-            profile: "USER"
+            profile: "RECRUITER"
         })
     });
 
@@ -28,20 +28,25 @@ recruiterForm.addEventListener("submit", async (evt) => {
     const userData = await userResponse.json();
     const userId = userData.id; 
 
+    console.log(recruiterForm.companyName.id);
+    console.log(recruiterForm.companyName.value);
+
     const requestRecruiter = new Request('http://127.0.0.1:3000/api/v1/recruiters', {
         method: 'POST',
         headers: requestHeaders,
         body:JSON.stringify({ 
             application_email: recruiterForm.application_email.value,
-            company:recruiterForm.company.value,
+            companyId: recruiterForm.companyName.value,
             recruiterId: userId
         })
     });
+
+
 
     const recruiterResponse = await fetch(requestRecruiter);
 
     if (recruiterResponse.ok) {
         console.log('Response ok');
-        window.location.href = './index.html';
+        window.location.href = './dashboard_recruiter.html';
     }
 });
