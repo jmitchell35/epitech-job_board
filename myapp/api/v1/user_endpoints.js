@@ -2,6 +2,7 @@
 import express from 'express';
 import userGateway from '../../gateways/user_gateway.js';
 import genAuthToken from '../../helpers/genAuthToken.js';
+import recruiterGateway from '../../gateways/recruiter_gateway.js';
 
 
 // instanciate a router object for v1 routes
@@ -51,7 +52,30 @@ userRouter.post('/', (req, res) => {
       sameSite: 'strict'
     });
 
-    res.send(data);
+    res.cookie('userId', data.id, {
+      httpOnly: false,
+      // secure: true,
+      sameSite: 'strict'
+    });
+
+    console.log(profile);
+
+    if (profile === 'RECRUITER') {
+      const recruiterPromise = recruiterGateway.findOneByAttribute('recruiterId', user.id);
+      recruiterPromise.then((recruiter) => {
+        const { companyId } = recruiter;
+
+        res.cookie('companyId', companyId, {
+          httpOnly: false,
+          // secure: true,
+          sameSite: 'strict'
+        });
+
+        res.send(data);
+      })
+    } else {
+      res.send(data);
+    }
   })
     .catch((error) => {
       console.log(error);
