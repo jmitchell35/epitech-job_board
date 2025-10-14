@@ -10,29 +10,31 @@
 
 <body class="bg-blue-50 text-gray-800">
 
-  <!-- HEADER -->
   <header class="bg-blue-700 text-white p-4 shadow-md">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Espace Recruteur</h1>
+      <h1 
+        class="text-2xl font-bold cursor-pointer hover:underline"
+        onclick="window.location.href='recruiter_dashboard.html'">
+          Espace Recruteur
+      </h1>
       <nav class="space-x-6">
-        <a href="recruiter_dashboard.html" class="hover:underline">Tableau de bord</a>
+        <a href="recruiter_create_offer.html" class="hover:underline">Créer une offre</a>
+        <a href="recruiter_offers.html" class="hover:underline">Les offres de l'entreprise</a>
         <a href="recruiter_applications.html" class="hover:underline">Candidatures reçues</a>
-        <button id="logout-button" class="hover:underline text-red-200">Déconnexion</button>
+        <button id="logout-button" class="hover:underline">Déconnexion</button>
       </nav>
     </div>
   </header>
-
-
-    <!-- Liste des offres -->
+  <main class="container mx-auto p-6">
+     <section class="text-center mb-10">
+      <h2 class="text-3xl font-bold mb-2 text-black-700">Offres déjà publiées</h2>
     <section>
-      <h3 class="text-2xl font-semibold mb-6 text-blue-700 text-center">Offres déjà publiées</h3>
       <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6 offer-container">
         <p class="text-center col-span-3 text-gray-500">Chargement des offres...</p>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="text-center text-gray-500 p-4 bg-gray-100">
     2025 Job Board — Espace Recruteur
   </footer>

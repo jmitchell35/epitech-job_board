@@ -47,6 +47,6 @@ recruiterForm.addEventListener("submit", async (evt) => {
 
     if (recruiterResponse.ok) {
         console.log('Response ok');
-        window.location.href = './dashboard_recruiter.html';
+        window.location.href = './recruiter_dashboard.html';
     }
 });
