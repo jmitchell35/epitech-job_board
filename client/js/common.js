@@ -1,6 +1,11 @@
-function hasCookie(cookieName) {
-  const cookie = getCookie(`${cookieName}`);
-  if (cookie !== "") {
+const loginAnchor = document.getElementById('login-anchor');
+const registerAnchor = document.getElementById('register-anchor');
+const logoutButton = document.getElementById('logout-button');
+
+function isLoggedIn() {
+  const cookie = getCookie('isLoggedIn');
+  console.log(cookie);
+  if (cookie === 'true') {
     return true;
   } else {
     return false;
@@ -21,3 +26,43 @@ function getCookie(cname) {
   }
   return "";
 }
+
+function toggleLoginDisplay() {
+  if (isLoggedIn()) {
+    loginAnchor.style.display = 'none';
+    registerAnchor.style.display = 'none';
+    logoutButton.style.display = 'inline';
+
+  } else {
+    loginAnchor.style.display = 'inline';
+    registerAnchor.style.display = 'inline';
+    logoutButton.style.display = 'none';
+  }
+}
+
+toggleLoginDisplay();
+
+logoutButton.addEventListener('click', () => {
+
+  console.log('logging out');
+  const request = new Request(`http://localhost:3000/api/v1/auth/logout`, {
+    credentials: 'include',
+  });
+
+  console.log('fetching');
+  fetch(request)
+    .then((response) => {
+      console.log('got response');
+      console.log(response);
+      return response;
+    })
+    .then((response) => {
+      if (response.ok) {
+        console.log('Logged out');
+        toggleLoginDisplay();
+      }
+    })
+    .catch((error) => {
+      console.error('Fetch error: ', error);
+    });
+})

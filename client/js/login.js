@@ -11,7 +11,7 @@ loginForm.addEventListener('submit', (evt) => {
     headers: requestHeaders,
     credentials: 'include',
     body: JSON.stringify({
-      email: loginForm.email.value,      // ✅ Get the actual value
+      email: loginForm.email.value,
       password: loginForm.password.value
     })
   });
@@ -27,4 +27,6 @@ loginForm.addEventListener('submit', (evt) => {
       }
     })
     .catch(console.error);
+
+    toggleLoginDisplay();
 })
