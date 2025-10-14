@@ -34,7 +34,7 @@ recruiterForm.addEventListener("submit", async (evt) => {
         body:JSON.stringify({ 
             application_email: recruiterForm.application_email.value,
             company:recruiterForm.company.value,
-            user: { connect: { id: userId } }
+            recruiterId: userId
         })
     });
 
