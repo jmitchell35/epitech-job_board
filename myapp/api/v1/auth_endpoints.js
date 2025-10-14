@@ -1,7 +1,7 @@
 // Still need the express class
 import express from 'express';
 import userGateway from '../../gateways/user_gateway.js';
-import jwt from 'jsonwebtoken';
+import genAuthToken from '../../helpers/genAuthToken.js';
 
 
 // instanciate a router object for v1 routes
@@ -18,9 +18,7 @@ authRouter.post('/login', (req, res) => {
     if (user !== null && password === user.password) {
       // Encodage du JWT via la variable d'environnement JWT_SECRET
       const { email, profile } = user;
-      const jwtToken = jwt.sign({ email, profile }, process.env.JWT_SECRET, {
-        expiresIn: "1d",
-      });
+      const jwtToken = genAuthToken({ email, profile });
 
       res.cookie("authToken", jwtToken, {
         httpOnly: true,
