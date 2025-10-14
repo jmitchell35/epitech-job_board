@@ -22,11 +22,17 @@ authRouter.post('/login', (req, res) => {
         expiresIn: "1d",
       });
 
-      res.cookie("jwtToken", jwtToken, {
+      res.cookie("authToken", jwtToken, {
         httpOnly: true,
         // secure: true,
         sameSite: 'lax',
         maxAge: 24 * 60 * 60 * 1000
+      });
+
+      res.cookie('isLoggedIn', 'true', {
+        httpOnly: false,
+        // secure: true,
+        sameSite: 'strict'
       });
       res.json(jwtToken);
     } else {
@@ -40,8 +46,14 @@ authRouter.post('/login', (req, res) => {
 });
 
 authRouter.get('/logout', (req, res) => {
-  res.clearCookie("jwtToken");
-	res.redirect('/');
+  res.cookie('isLoggedIn', 'false', {
+        httpOnly: false,
+        // secure: true,
+        sameSite: 'strict'
+      });
+
+  res.clearCookie("authToken");
+  res.sendStatus(200);
 });
 
 export default authRouter;
