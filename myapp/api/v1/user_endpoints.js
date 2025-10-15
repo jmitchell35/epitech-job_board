@@ -3,7 +3,7 @@ import express from 'express';
 import userGateway from '../../gateways/user_gateway.js';
 import genAuthToken from '../../helpers/genAuthToken.js';
 import recruiterGateway from '../../gateways/recruiter_gateway.js';
-import isAuthorized from '../../middlewares/is_authenticated.js';
+import isAuthorized from '../../middlewares/is_authorized.js';
 import isAuthenticated from '../../middlewares/is_authenticated.js';
 import isAdmin from '../../middlewares/helpers/is_admin.js';
 import isSelf from '../../middlewares/helpers/is_self.js';
