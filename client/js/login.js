@@ -22,6 +22,12 @@ loginForm.addEventListener('submit', (evt) => {
     })
     .then((response) => {
       if (response.ok) {
+
+        // if (response.profile.value === "RECRUITER"){
+        //   window.location.href = './recruiter_dashboard.html';
+        // } else if (response.profile.value === "ADMIN") {
+        //   window.location.href = './admin_dashboard.html';
+        // } else {
         console.log('Response ok');
         window.location.href = './index.html';
       }

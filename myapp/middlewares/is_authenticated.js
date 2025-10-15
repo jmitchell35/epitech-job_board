@@ -13,7 +13,7 @@ function isAuthenticated(req, res, next) {
         sameSite: 'strict'
       });
       return res.status(401).json({ message: "Non autorisé" });
-    }
+    }ki
     req.user = decoded;
 
     next();

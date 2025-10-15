@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", async (evt) => {
   const cardContainer = document.getElementById("card-container");
 
-  const response = await fetch("http://127.0.0.1:3000/api/v1/job_advertisements", {
+  const response = await fetch("http://localhost:3000/api/v1/job_advertisements", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   const ads = await response.json();
+  console.log("ADS JSON:", ads); 
 
   ads.forEach((ad) => {
     const card = document.createElement("article");
