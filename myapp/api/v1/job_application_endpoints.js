@@ -1,12 +1,18 @@
 // Still need the express class
 import express from 'express';
 import applicationGateway from '../../gateways/application_gateway.js';
+import isAuthorized from '../../middlewares/is_authorized.js';
+import isAuthenticated from '../../middlewares/is_authenticated.js';
+import isAdmin from '../../middlewares/helpers/is_admin.js';
+import isApplicationOwner from '../../middlewares/helpers/is_app_owner.js';
+import isApplicationRecruiter from '../../middlewares/helpers/is_app_recruiter.js';
+import isCandidate from '../../middlewares/helpers/is_candidate.js';
 
 // instanciate a router object for v1 routes
 const applicationRouter = express.Router({mergeParams: true});
 
 // use it
-applicationRouter.get('/', (req, res) => {
+applicationRouter.get('/', isAuthenticated, isAuthorized(isAdmin), (req, res) => {
   const promise = applicationGateway.getAll();
   promise.then((data) => {
     res.send(data);
@@ -16,7 +22,7 @@ applicationRouter.get('/', (req, res) => {
   });
 })
 
-applicationRouter.get('/:uuid', (req, res) => {
+applicationRouter.get('/:uuid', isAuthenticated, isAuthorized(isApplicationOwner, isAdmin, isApplicationRecruiter), (req, res) => {
   const promise = applicationGateway.get(req.params.uuid);
   promise.then((data) => {
     res.send(data);
@@ -26,7 +32,7 @@ applicationRouter.get('/:uuid', (req, res) => {
   });
 })
 
-applicationRouter.post('/', (req, res) => {
+applicationRouter.post('/', isAuthenticated, isAuthorized(isCandidate, isAdmin), (req, res) => {
   const promise = applicationGateway.create(req.body);
   promise.then((data) => {
     res.send(data);
@@ -37,7 +43,7 @@ applicationRouter.post('/', (req, res) => {
   });
 })
 
-applicationRouter.put('/:uuid', (req, res) => {
+applicationRouter.put('/:uuid', isAuthenticated, isAuthorized(isApplicationOwner, isAdmin), (req, res) => {
   const promise = applicationGateway.update(req.params.uuid, req.body);
   promise.then((data) => {
     res.send(data);
@@ -47,7 +53,7 @@ applicationRouter.put('/:uuid', (req, res) => {
   });
 })
 
-applicationRouter.delete('/:uuid', (req, res) => {
+applicationRouter.delete('/:uuid', isAuthenticated, isAuthorized(isAdmin), (req, res) => {
   const promise = applicationGateway.delete(req.params.uuid);
   promise.then((data) => {
     res.send(data);
