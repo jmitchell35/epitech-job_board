@@ -1,4 +1,4 @@
-import applicationGateway from '../gateways/application_gateway.js';
+import applicationGateway from '../../gateways/application_gateway.js';
 
 function isApplicationOwner(req) {
   return applicationGateway.get(req.params.uuid)

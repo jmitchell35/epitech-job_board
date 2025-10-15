@@ -1,4 +1,4 @@
-import candidateGateway from '../gateways/candidate_gateway.js';
+import candidateGateway from '../../gateways/candidate_gateway.js';
 
 function isCandidateOwner(req) {
   return candidateGateway.get(req.params.uuid)

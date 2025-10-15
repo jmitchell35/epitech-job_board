@@ -1,4 +1,4 @@
-import recruiterGateway from '../gateways/recruiter_gateway.js';
+import recruiterGateway from '../../gateways/recruiter_gateway.js';
 
 function isRecruiterOwner(req) {
   return recruiterGateway.get(req.params.uuid)

@@ -1,4 +1,4 @@
-import advertisementGateway from '../gateways/advertisement_gateway.js';
+import advertisementGateway from '../../gateways/advertisement_gateway.js';
 
 function isAdvertisementOwner(req) {
   return advertisementGateway.get(req.params.uuid)
