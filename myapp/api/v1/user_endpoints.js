@@ -3,6 +3,10 @@ import express from 'express';
 import userGateway from '../../gateways/user_gateway.js';
 import genAuthToken from '../../helpers/genAuthToken.js';
 import recruiterGateway from '../../gateways/recruiter_gateway.js';
+import isAuthorized from '../../middlewares/is_authenticated.js';
+import isAuthenticated from '../../middlewares/is_authenticated.js';
+import isAdmin from '../../middlewares/helpers/is_admin.js';
+import isSelf from '../../middlewares/helpers/is_self.js';
 
 
 // instanciate a router object for v1 routes
@@ -10,7 +14,7 @@ const userRouter = express.Router({ mergeParams: true });
 
 
 // use it
-userRouter.get('/', (req, res) => {
+userRouter.get('/', isAuthenticated, isAuthorized(isAdmin), (req, res) => {
   const promise = userGateway.getAll();
   promise.then((data) => {
     res.send(data);
@@ -21,7 +25,7 @@ userRouter.get('/', (req, res) => {
     });
 })
 
-userRouter.get('/:uuid', (req, res) => {
+userRouter.get('/:uuid', isAuthenticated, isAuthorized(isSelf, isAdmin), (req, res) => {
   const promise = userGateway.get(req.params.uuid);
   promise.then((data) => {
     res.send(data);
@@ -83,7 +87,7 @@ userRouter.post('/', (req, res) => {
     });
 })
 
-userRouter.put('/:uuid', (req, res) => {
+userRouter.put('/:uuid', isAuthenticated, isAuthorized(isSelf, isAdmin), (req, res) => {
   const promise = userGateway.update(req.params.uuid, req.body);
   promise.then((data) => {
     res.send(data);
@@ -94,7 +98,7 @@ userRouter.put('/:uuid', (req, res) => {
     });
 })
 
-userRouter.delete('/:uuid', (req, res) => {
+userRouter.delete('/:uuid', isAuthenticated, isAuthorized(isAdmin), (req, res) => {
   const promise = userGateway.delete(req.params.uuid);
   promise.then((data) => {
     res.send(data);
