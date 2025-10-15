@@ -1,11 +1,12 @@
 // Still need the express class
 import express from 'express';
 import userGateway from '../../gateways/user_gateway.js';
-import jwt from 'jsonwebtoken';
+import genAuthToken from '../../helpers/genAuthToken.js';
+import recruiterGateway from '../../gateways/recruiter_gateway.js';
 
 
 // instanciate a router object for v1 routes
-const authRouter = express.Router({mergeParams: true});
+const authRouter = express.Router({ mergeParams: true });
 
 // use it
 authRouter.post('/login', (req, res) => {
@@ -17,10 +18,8 @@ authRouter.post('/login', (req, res) => {
 
     if (user !== null && password === user.password) {
       // Encodage du JWT via la variable d'environnement JWT_SECRET
-      const { email, profile } = user;
-      const jwtToken = jwt.sign({ email, profile }, process.env.JWT_SECRET, {
-        expiresIn: "1d",
-      });
+      const { id, email, profile } = user;
+      const jwtToken = genAuthToken({ id, email, profile });
 
       res.cookie("authToken", jwtToken, {
         httpOnly: true,
@@ -34,23 +33,45 @@ authRouter.post('/login', (req, res) => {
         // secure: true,
         sameSite: 'strict'
       });
-      res.json(jwtToken);
-    } else {
-		  res.status(401).json({ message: "Identifiants incorrects." });
-	  }
-  })
-  .catch((error) => {
-    console.log(error);
-    res.send(error);
-  });
-});
 
-authRouter.get('/logout', (req, res) => {
-  res.cookie('isLoggedIn', 'false', {
+      res.cookie('userId', user.id, {
         httpOnly: false,
         // secure: true,
         sameSite: 'strict'
       });
+
+      if (profile === 'RECRUITER') {
+        const recruiterPromise = recruiterGateway.findOneByAttribute('recruiterId', user.id);
+        recruiterPromise.then((recruiter) => {
+          const { companyId } = recruiter;
+
+          res.cookie('companyId', companyId, {
+            httpOnly: false,
+            // secure: true,
+            sameSite: 'strict'
+          });
+
+          res.json(jwtToken);
+        })
+      } else {
+        res.json(jwtToken);
+      }
+    } else {
+      res.status(401).json({ message: "Identifiants incorrects." });
+    }
+  })
+    .catch((error) => {
+      console.log(error);
+      res.send(error);
+    });
+});
+
+authRouter.get('/logout', (req, res) => {
+  res.cookie('isLoggedIn', 'false', {
+    httpOnly: false,
+    // secure: true,
+    sameSite: 'strict'
+  });
 
   res.clearCookie("authToken");
   res.sendStatus(200);

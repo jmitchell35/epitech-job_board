@@ -1,12 +1,17 @@
 // Still need the express class
 import express from 'express';
 import recruiterGateway from '../../gateways/recruiter_gateway.js';
+import isAuthorized from '../../middlewares/is_authorized.js';
+import isAuthenticated from '../../middlewares/is_authenticated.js';
+import isRecruiterOwner from '../../middlewares/helpers/is_recruiter_owner.js';
+import isAdmin from '../../middlewares/helpers/is_admin.js';
+import isRecruiter from '../../middlewares/helpers/is_recruiter.js';
 
 // instanciate a router object for v1 routes
 const recruiterRouter = express.Router({mergeParams: true});
 
 // use it
-recruiterRouter.get('/', (req, res) => {
+recruiterRouter.get('/', isAuthenticated, isAuthorized(isAdmin), (req, res) => {
   const promise = recruiterGateway.getAll();
   promise.then((data) => {
     res.send(data);
@@ -17,7 +22,7 @@ recruiterRouter.get('/', (req, res) => {
   });
 });
 
-recruiterRouter.get('/:uuid', (req, res) => {
+recruiterRouter.get('/:uuid', isAuthenticated, isAuthorized(isAdmin, isRecruiterOwner), (req, res) => {
   const promise = recruiterGateway.get(req.params.uuid);
   promise.then((data) => {
     res.send(data);
@@ -28,7 +33,7 @@ recruiterRouter.get('/:uuid', (req, res) => {
   });
 });
 
-recruiterRouter.post('/', (req, res) => {
+recruiterRouter.post('/', isAuthenticated, isAuthorized(isRecruiter, isAdmin), (req, res) => {
   const promise = recruiterGateway.create(req.body);
   promise.then((data) => {
     res.send(data);
@@ -39,7 +44,7 @@ recruiterRouter.post('/', (req, res) => {
   });
 });
 
-recruiterRouter.put('/:uuid', (req, res) => {
+recruiterRouter.put('/:uuid', isAuthenticated, isAuthorized(isRecruiterOwner, isAdmin),(req, res) => {
   const promise = recruiterGateway.update(req.params.uuid, req.body);
   promise.then((data) => {
     res.send(data);
@@ -50,7 +55,7 @@ recruiterRouter.put('/:uuid', (req, res) => {
   });
 });
 
-recruiterRouter.delete('/:uuid', (req, res) => {
+recruiterRouter.delete('/:uuid', isAuthenticated, isAuthorized(isAdmin), (req, res) => {
   const promise = recruiterGateway.delete(req.params.uuid);
   promise.then((data) => {
     res.send(data);
