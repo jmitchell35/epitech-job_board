@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Board - Candidature</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+  <header class="bg-green-700 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Job Board</h1>
+      <nav class="space-x-6">
+        <a href="index.html" class="hover:underline">Nos offres</a>
+        <a href="index.html" class="hover:underline">Retour</a>
+        <a href="register.html" id="register-anchor" class="hover:underline">Inscription</a>
+        <a href="login.html" id="login-anchor" class="hover:underline">Connexion</a>
+        <button id="logout-button" class="hover:underline">Déconnexion</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto p-8">
+    <section class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-2xl font-bold text-center mb-6 text-green-700">
+        Envoyer votre candidature
+      </h2>
+
+      <form id="application-form" class="space-y-4">
+        <input type="text" name="firstName" placeholder="Prénom" required
+          class="border border-gray-300 p-2 w-full rounded" />
+
+        <input type="text" name="lastName" placeholder="Nom" required
+          class="border border-gray-300 p-2 w-full rounded" />
+
+        <input type="email" name="candidateEmail" placeholder="Email" required
+          class="border border-gray-300 p-2 w-full rounded" />
+
+        <input type="tel" name="phone" placeholder="Téléphone" required
+          class="border border-gray-300 p-2 w-full rounded" />
+
+        <textarea name="message" placeholder="Votre message" required
+          class="border border-gray-300 p-2 w-full rounded h-32"></textarea>
+
+        <button type="submit"
+          class="bg-green-600 hover:bg-green-700 text-white w-full py-2 rounded transition">
+          Envoyer ma candidature
+        </button>
+      </form>
+
+      <div id="msg" class="text-center mt-4"></div>
+    </section>
+  </main>
+
+  <footer class="text-center text-gray-500 p-4 bg-gray-100">
+    2025 Job Board
+  </footer>
+
+  <script src="./js/application_create.js"></script>
+  <script src="./js/common.js"></script>
+</body>
+</html>
