@@ -11,7 +11,7 @@ import isAdvertisementOwner from '../../middlewares/helpers/is_ad_owner.js';
 const jobAdRouter = express.Router({mergeParams: true});
 
 // use it
-jobAdRouter.get('/', isAuthenticated, isAuthorized(isAdmin), (req, res) => {
+jobAdRouter.get('/', (req, res) => {
   const promise = jobAdGateway.getAll();
   promise.then((data) => {
     res.send(data);
