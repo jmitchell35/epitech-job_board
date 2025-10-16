@@ -32,7 +32,7 @@ applicationRouter.get('/:uuid', isAuthenticated, isAuthorized(isApplicationOwner
   });
 })
 
-applicationRouter.post('/', isAuthenticated, isAuthorized(isCandidate, isAdmin), (req, res) => {
+applicationRouter.post('/', (req, res) => {
   const promise = applicationGateway.create(req.body);
   promise.then((data) => {
     res.send(data);
