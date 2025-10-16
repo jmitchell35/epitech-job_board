@@ -32,10 +32,10 @@ advertisementForm.addEventListener("submit", async (evt) => {
 
     if (adResponse.ok) {
         console.log('Response ok');
-        window.alert("Annonce crée avec succès recruteur de merde qui lit meme pas tous les CV");
+        window.alert("Annonce crée avec succès");
     }
 
-    window.location.href = './recruiter_dashboard.html';
+    // window.location.href = './recruiter_dashboard.html';
 
 
 })
