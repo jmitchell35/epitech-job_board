@@ -3,6 +3,7 @@ import express from 'express';
 import userGateway from '../../gateways/user_gateway.js';
 import genAuthToken from '../../helpers/genAuthToken.js';
 import recruiterGateway from '../../gateways/recruiter_gateway.js';
+import isAuthenticated from '../../middlewares/is_authenticated.js';
 
 
 // instanciate a router object for v1 routes
@@ -51,10 +52,10 @@ authRouter.post('/login', (req, res) => {
             sameSite: 'strict'
           });
 
-          res.json(jwtToken);
+          res.json({ profile });
         })
       } else {
-        res.json(jwtToken);
+        res.json({ profile });
       }
     } else {
       res.status(401).json({ message: "Identifiants incorrects." });
