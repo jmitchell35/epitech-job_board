@@ -4,7 +4,6 @@ const logoutButton = document.getElementById('logout-button');
 
 function isLoggedIn() {
   const cookie = getCookie('isLoggedIn');
-  console.log(cookie);
   if (cookie === 'true') {
     return true;
   } else {
