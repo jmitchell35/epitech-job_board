@@ -5,12 +5,12 @@ advertisementForm.addEventListener("submit", async (evt) => {
     evt.preventDefault();
 
     const theCompanyId = getCookie("companyId");
-    const theRecruiterId = getCookie("companyId");
+    const theRecruiterId = getCookie("userId");
 
     const requestHeaders = new Headers();
     requestHeaders.append("Content-Type", "application/json");
 
-    const requestAd = new Request('http://127.0.0.1:3000/api/v1/job_advertisements', {
+    const requestAd = new Request('http://localhost:3000/api/v1/job_advertisements', {
         method: 'POST',
         headers: requestHeaders,
         credentials: 'include',
@@ -35,7 +35,7 @@ advertisementForm.addEventListener("submit", async (evt) => {
         window.alert("Annonce crée avec succès");
     }
 
-    window.location.href = './recruiter_dashboard.html';
+    //window.location.href = './recruiter_dashboard.html';
 
 
 })

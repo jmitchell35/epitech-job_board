@@ -35,7 +35,7 @@ applicationsForm.addEventListener("submit", async (evt) => {
         window.alert("Vous avez postulé avec succès!");
         window.location.href = './index.html';
     } else{
-        console.log(error)
+        console.log(error);
     }
 
 
