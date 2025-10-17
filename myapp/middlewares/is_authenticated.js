@@ -1,12 +1,16 @@
 import jwt from 'jsonwebtoken';
 
 function isAuthenticated(req, res, next) {
-  const jwtToken = req.cookies["jwtToken"];
+  console.log("checking Authentication");
+  const jwtToken = req.cookies["authToken"];
   if (!jwtToken) {
+    console.log("No token found");
+
     return res.status(401).json({ message: "Non autorisé" });
   }
-  jwt.verify(jwtToken, process.env.JWT_SECRET, (err, decoded) => {
+  jwt.verify(authToken, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
+      console.log("token is invalid");
         res.cookie('isLoggedIn', 'false', {
         httpOnly: false,
         // secure: true,
@@ -14,6 +18,8 @@ function isAuthenticated(req, res, next) {
       });
       return res.status(401).json({ message: "Non autorisé" });
     }
+    console.log("token is valid");
+
     req.user = decoded;
 
     next();
