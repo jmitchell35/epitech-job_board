@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
       </div>
       <div class = "flex flex-col">
         <button id = "btn1-${ad.advertisement_id}" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-xl  hover:bg-blue-700 transition ml-6">
-        Read more
+        En savoir plus
         </button>
       </div>
 
@@ -62,9 +62,9 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
       btn1.addEventListener('click', () => {
         ul.classList.toggle('hidden');
         if (ul.classList.contains('hidden')){
-          btn1.innerHTML= "Read More";
+          btn1.innerHTML= "En savoir plus";
         } else {
-          btn1.innerHTML= "Read Less";
+          btn1.innerHTML= "Voir moins";
         }
       });
 
