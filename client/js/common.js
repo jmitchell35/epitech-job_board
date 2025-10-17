@@ -2,6 +2,7 @@ const loginAnchor = document.getElementById('login-anchor');
 const registerAnchor = document.getElementById('register-anchor');
 const logoutButton = document.getElementById('logout-button');
 
+
 function isLoggedIn() {
   const cookie = getCookie('isLoggedIn');
   console.log(cookie);
