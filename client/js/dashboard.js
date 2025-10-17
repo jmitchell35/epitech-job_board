@@ -20,20 +20,22 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
     card.classList.add(
       "bg-white",
       "p-6",
+      "m-6",
       "rounded-2xl",
       "shadow-lg",
       "hover:shadow-xl",
       "transition",
       "duration-300",
       "flex",
-      "flex-col",
-      "justify-between"
+      "flex-row",
+      "justify-between",
+      "min-w-[75%]"
     );
     
 
     card.innerHTML = `
       <div>
-        <h3 class="text-xl font-bold mb-2 text-gray-800">${ad.title}</h3>
+        <h3 class="flex flex-col text-xl font-bold mb-2 text-gray-800 ">${ad.title}</h3>
         <p class="text-gray-600 mb-4">${ad.shortDescription}</p>
         <ul id = "ul-${ad.advertisement_id}" class="text-sm text-gray-500 space-y-1 hidden">
           <li><strong>Description :</strong> ${ad.fullDescription}</li>
@@ -43,13 +45,16 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
           <li><strong>Remote :</strong> ${ad.remoteWork}</li>
         </ul>
       </div>
-      <button id = "btn1-${ad.advertisement_id}" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition">
-      Read more
-      </button>
-      <button id = "btn2-${ad.advertisement_id}" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition">
-      Apply
-      </button>
-    `;
+      <div class = "flex flex-col">
+        <button id = "btn1-${ad.advertisement_id}" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-xl  hover:bg-green-700 transition ml-6">
+        Read more
+        </button>
+        <button id = "btn2-${ad.advertisement_id}" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition ml-6">
+        Apply
+        </button>
+      </div>
+
+      `;
     cardContainer.append(card);
 
 
