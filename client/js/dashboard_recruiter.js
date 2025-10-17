@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
       <div>
         <h3 class="flex flex-col text-xl font-bold mb-2 text-gray-800 ">${ad.title}</h3>
         <p class="text-gray-600 mb-4">${ad.shortDescription}</p>
-        <ul id = "ul-${ad.id}" class="text-sm text-gray-500 space-y-1 hidden">
+        <ul id = "ul-${ad.advertisement_id}" class="text-sm text-gray-500 space-y-1 hidden">
           <li><strong>Description :</strong> ${ad.fullDescription}</li>
           <li><strong>Ville :</strong> ${ad.city}</li>
           <li><strong>Salaire :</strong> ${ad.wages}</li>
@@ -45,19 +45,19 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
           <li><strong>Remote :</strong> ${ad.remoteWork}</li>
         </ul>
       </div>
-      <button id = "btn1-${ad.id}" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition">
-      Read more
-      </button>
-      <button id = "btn2-${ad.id}" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition">
-      Apply
-      </button>
-    `;
+      <div class = "flex flex-col">
+        <button id = "btn1-${ad.advertisement_id}" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-xl  hover:bg-blue-700 transition ml-6">
+        En savoir plus
+        </button>
+      </div>
+
+      `;
     cardContainer.append(card);
 
 
-    const btn1 = card.querySelector(`#btn1-${ad.id}`);
-    const btn2 = card.querySelector(`#btn2-${ad.id}`);
-    const ul = card.querySelector(`#ul-${ad.id}`);
+    const btn1 = card.querySelector(`#btn1-${ad.advertisement_id}`);
+    const btn2 = card.querySelector(`#btn2-${ad.advertisement_id}`);
+    const ul = card.querySelector(`#ul-${ad.advertisement_id}`);
 
       btn1.addEventListener('click', () => {
         ul.classList.toggle('hidden');
@@ -67,9 +67,6 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
           btn1.innerHTML= "Voir moins";
         }
       });
-    
-      btn2.addEventListener('click', () => {
-        window.location.href=`./make_application.html?advertisementId=${ad.id}`;
-      });
+
   });
 });
