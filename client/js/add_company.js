@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", () => {
-  const API_COMPANIES = "http://127.0.0.1:3000/api/v1/companies";
+  const API_COMPANIES = "http://localhost:3000/api/v1/companies";
 
   const companySelect = document.getElementById("company-select");
   const companyForm = document.getElementById("company-form");

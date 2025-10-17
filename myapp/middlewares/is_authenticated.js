@@ -8,7 +8,7 @@ function isAuthenticated(req, res, next) {
 
     return res.status(401).json({ message: "Non autorisé" });
   }
-  jwt.verify(authToken, process.env.JWT_SECRET, (err, decoded) => {
+  jwt.verify(jwtToken, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       console.log("token is invalid");
         res.cookie('isLoggedIn', 'false', {

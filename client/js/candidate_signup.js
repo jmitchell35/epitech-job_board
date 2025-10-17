@@ -7,7 +7,7 @@ candidateForm.addEventListener("submit", async (evt) => {
     const requestHeaders = new Headers();
     requestHeaders.append("Content-Type", "application/json");
 
-    const requestUser = new Request('http://127.0.0.1:3000/api/v1/users', {
+    const requestUser = new Request('http://localhost:3000/api/v1/users', {
         method: 'POST',
         headers: requestHeaders,
         credentials: 'include',
@@ -28,9 +28,10 @@ candidateForm.addEventListener("submit", async (evt) => {
     const userData = await userResponse.json();
     const userId = userData.id; 
 
-    const requestCandidate = new Request('http://127.0.0.1:3000/api/v1/candidates', {
+    const requestCandidate = new Request('http://localhost:3000/api/v1/candidates', {
         method: 'POST',
         headers: requestHeaders,
+        credentials: 'include',
         body:JSON.stringify({ 
             phone: candidateForm.phone.value,
             message: candidateForm.message.value,

@@ -11,7 +11,7 @@ applicationsForm.addEventListener("submit", async (evt) => {
     const requestHeaders = new Headers();
     requestHeaders.append("Content-Type", "application/json");
 
-    const requestApp = new Request('http://127.0.0.1:3000/api/v1/job_applications', {
+    const requestApp = new Request('http://localhost:3000/api/v1/job_applications', {
         method: 'POST',
         headers: requestHeaders,
         credentials: 'include',
