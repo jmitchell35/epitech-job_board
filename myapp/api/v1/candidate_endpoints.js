@@ -62,4 +62,14 @@ candidateRouter.delete('/:uuid', isAuthenticated, isAuthorized(isAdmin), (req, r
   });
 })
 
+candidateRouter.get('/user/:uuid', isAuthenticated, isAuthorized(isAdmin, isCandidateOwner), (req, res) => {
+  const promise = candidateGateway.findOneByAttribute('candidateId', req.params.uuid);
+  promise.then((data) => {
+    res.send(data);
+  })
+  .catch((error) => {
+    res.send(error);
+  });
+})
+
 export default candidateRouter;

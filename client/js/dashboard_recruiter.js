@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
 
 
     const btn1 = card.querySelector(`#btn1-${ad.advertisement_id}`);
-    const btn2 = card.querySelector(`#btn2-${ad.advertisement_id}`);
     const ul = card.querySelector(`#ul-${ad.advertisement_id}`);
 
       btn1.addEventListener('click', () => {
