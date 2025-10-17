@@ -10,7 +10,7 @@ import isRecruiter from '../../middlewares/helpers/is_recruiter.js';
 const companyRouter = express.Router({mergeParams: true});
 
 // use it
-companyRouter.get('/', isAuthenticated, isAuthorized(isAdmin), (req, res) => {
+companyRouter.get('/', (req, res) => {
   const promise = companyGateway.getAll();
   promise.then((data) => {
     res.send(data);
