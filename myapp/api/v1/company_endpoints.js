@@ -32,7 +32,7 @@ companyRouter.get('/:uuid', (req, res) => {
   });
 })
 
-companyRouter.post('/', isAuthenticated, isAuthorized(isAdmin, isRecruiter), (req, res) => {
+companyRouter.post('/', (req, res) => {
   const promise = companyGateway.create(req.body);
   promise.then((data) => {
     res.send(data);

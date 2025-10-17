@@ -34,6 +34,7 @@ recruiterForm.addEventListener("submit", async (evt) => {
     const requestRecruiter = new Request('http://localhost:3000/api/v1/recruiters', {
         method: 'POST',
         headers: requestHeaders,
+        credentials: "include",
         body:JSON.stringify({ 
             application_email: recruiterForm.application_email.value,
             companyId: recruiterForm.companyName.value,
