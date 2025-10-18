@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin users</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex flex-col min-h-screen">
+    <header class="bg-black text-gray-100 p-4 shadow-md">
+        <div class="container mx-auto my-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Job Board</h1>
+            <nav class="space-x-6">
+                <a href="/index.html" class="hover:underline">Nos offres</a>
+                <a href="/login.html" id="login-anchor" class="hover:underline">Connexion</a>
+                <a href="/register.html" id="register-anchor" class="hover:underline">Inscription</a>
+                <button id="logout-button" class="hover:underline">Déconnexion</button>
+            </nav>
+        </div>
+        <div class="bg-white text-black container mx-auto m-4 flex justify-between items-center">
+            <h2 class="text-lg font-bold">Admin dashboard</h2>
+            <nav class="space-x-6">
+                <a href="/admin/admin_dashboard.html" class="hover:underline">Admin dashboard</a>
+                <a href="/admin/admin_advertisements.html" class="hover:underline">Advertisements</a>
+                <a href="/admin/admin_applications.html" class="hover:underline">Applications</a>
+                <a href="/admin/admin_companies.html" class="hover:underline">Companies</a>
+                <a href="/admin/admin_users.html" class="hover:underline">Users</a>
+                <a href="/admin/admin_candidates.html" class="hover:underline">Candidates</a>
+                <a href="/admin/admin_recruiters.html" class="hover:underline">Recruiters</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="w-full m-1 p-6">
+        
+        <div class="overflow-x-auto">
+            <table id="admin-table" class="table-auto min-w-full text-xs">
+            </table>
+        </div>
+        
+
+    </main>
+
+    <footer class="mt-auto text-center text-gray-100 p-4 bg-black">
+        2025 Job Board
+    </footer>
+    <script src="/js/common.js"></script>
+    <script src="/js/admin/admin_commons.js"></script>
+    <script src="/js/admin/admin_users.js"></script>
+</body>
+
+</html>
