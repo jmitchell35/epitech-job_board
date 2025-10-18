@@ -18,6 +18,9 @@
           Espace Recruteur
       </h1>
       <nav class="space-x-6">
+        <a href="index.html" class="hover:underline">Nos offres</a>
+        <a href="login.html" id="login-anchor" class="hover:underline">Connexion</a>
+        <a href="register.html" id="register-anchor" class="hover:underline">Inscription</a>
         <a href="recruiter_create_offer.html" class="hover:underline">Créer une offre</a>
         <a href="recruiter_offers.html" class="hover:underline">Les offres de l'entreprise</a>
         <a href="recruiter_applications.html" class="hover:underline">Candidatures reçues</a>
@@ -47,12 +50,14 @@
       </div>
     </section>
 
-    <!-- Section des offres -->
-    <section>
-      <h3 class="text-2xl font-semibold mb-6 text-black-700 text-center">Toutes les offres disponibles</h3>
-      <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6 job-container">
-        <p class="text-center col-span-3 text-gray-500">Chargement des offres...</p>
-      </div>
+
+    <section class="text-center mb-10">
+      <h2 class="text-3xl font-bold mb-2">Les dernières offres d'emploi</h2>
+      <p class="text-gray-600">Découvrez des opportunités dans tous les secteurs !</p>
+    </section>
+
+    <section id = "card-container" class="grid mb-5 gap-6 job-container">
+
     </section>
 
   </main>
@@ -61,7 +66,8 @@
     2025 Job Board — Espace Recruteur
   </footer>
 
-  <script src="./js/recruiter_dashboard.js"></script>
+  <script src="./js/common.js"></script>
+  <script src="./js/dashboard_recruiter.js"></script>
 </body>
 
 </html>

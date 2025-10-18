@@ -47,6 +47,16 @@ class CandidateGateway {
     console.log(deletedData);
     return deletedData;
   }
+
+  async findOneByAttribute(attribute, value) {
+    let data = await prisma.candidate.findUnique({
+      where: {
+        [attribute]: value,
+      }
+    });
+    console.log(data);
+    return data;
+  }
 }
 
 export default new CandidateGateway();

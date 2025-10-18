@@ -20,6 +20,8 @@
         <a href="recruiter_create_offer.html" class="hover:underline">Créer une offre</a>
         <a href="recruiter_offers.html" class="hover:underline">Les offres de l'entreprise</a>
         <a href="recruiter_applications.html" class="hover:underline">Candidatures reçues</a>
+        <a href="login.html" id="login-anchor" class="hover:underline">Connexion</a>
+        <a href="register.html" id="register-anchor" class="hover:underline">Inscription</a>
         <button id="logout-button" class="hover:underline">Déconnexion</button>
       </nav>
     </div>
@@ -98,54 +100,9 @@
   <footer class="text-center text-gray-500 p-4 bg-gray-100 mt-8">
     2025 Job Board
   </footer>
+  
+  <script src="./js/common.js"></script>
+  <script src="./js/create_ad.js"></script>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const shortDescInput = document.querySelector('input[name="shortDescription"]');
-      const counter = document.getElementById("char-count");
-      const form = document.getElementById("create-offer-form");
-      const msg = document.getElementById("msg");
-
-      // Compteur dynamique
-      shortDescInput.addEventListener("input", () => {
-        const length = shortDescInput.value.length;
-        counter.textContent = `${length} / 100`;
-        counter.classList.toggle("text-red-600", length > 100);
-      });
-
-      // Soumission du formulaire
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        // Validation côté client
-        if (shortDescInput.value.length > 100) {
-          msg.textContent = "❌ La petite description ne doit pas dépasser 100 caractères.";
-          msg.className = "text-center mt-4 font-medium text-red-600";
-          return;
-        }
-
-        const data = Object.fromEntries(new FormData(form).entries());
-
-        try {
-          const res = await fetch("http://127.0.0.1:3000/api/v1/advertisements", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-          });
-
-          if (!res.ok) throw new Error(await res.text());
-
-          msg.textContent = "Offre publiée avec succès !";
-          msg.className = "text-center mt-4 font-medium text-green-600";
-          form.reset();
-          counter.textContent = "0 / 100";
-        } catch (err) {
-          console.error(err);
-          msg.textContent = "Erreur lors de la création de l'offre.";
-          msg.className = "text-center mt-4 font-medium text-red-600";
-        }
-      });
-    });
-  </script>
 </body>
 </html>
