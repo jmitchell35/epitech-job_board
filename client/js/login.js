@@ -38,7 +38,7 @@ loginForm.addEventListener('submit', (evt) => {
       const { profile } = data;
       if (profile === 'ADMIN') {
         console.log('admin');
-        window.location.href = './admin_dashboard.html';
+        window.location.href = './admin/admin_dashboard.html';
       } else if (profile === 'RECRUITER') {
         console.log('recruiter');
         window.location.href = './recruiter_dashboard.html';

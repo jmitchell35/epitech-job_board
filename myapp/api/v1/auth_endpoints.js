@@ -25,7 +25,7 @@ authRouter.post('/login', (req, res) => {
       res.cookie("authToken", jwtToken, {
         httpOnly: true,
         // secure: true,
-        sameSite: 'lax',
+        sameSite: 'strict',
         maxAge: 24 * 60 * 60 * 1000
       });
 
@@ -75,7 +75,14 @@ authRouter.get('/logout', (req, res) => {
   });
 
   res.clearCookie("authToken");
+  res.clearCookie("userId");
+  res.clearCookie("companyId");
   res.sendStatus(200);
+});
+
+authRouter.get('/readMeMyRights', isAuthenticated, (req, res) => {
+  const profile = req.user.profile;
+  res.status(200).json({ profile });
 });
 
 export default authRouter;

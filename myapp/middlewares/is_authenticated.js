@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 function isAuthenticated(req, res, next) {
-  const jwtToken = req.cookies["jwtToken"];
+  const jwtToken = req.cookies["authToken"];
   if (!jwtToken) {
     return res.status(401).json({ message: "Non autorisé" });
   }

@@ -36,9 +36,9 @@ model Recruiter {
 
   application_email String             @db.VarChar(255)
 
-  user              User               @relation(fields: [recruiterId], references: [id])
+  user              User               @relation(fields: [recruiterId], references: [id], onDelete: Cascade)
   recruiterId       String             @unique @db.Uuid
-  company           Company            @relation(fields: [companyId], references: [id])
+  company           Company            @relation(fields: [companyId], references: [id], onDelete: Cascade)
   companyId         String             @db.Uuid
 
   createdAt         DateTime           @default(now()) @map("created_at")
@@ -55,7 +55,7 @@ model Candidate {
   phone             String             @db.VarChar(255)
   message           String
 
-  user              User               @relation(fields: [candidateId], references: [id])
+  user              User               @relation(fields: [candidateId], references: [id], onDelete: Cascade)
   candidateId       String             @unique @db.Uuid
 
   createdAt         DateTime           @default(now()) @map("created_at")
@@ -90,9 +90,9 @@ model Application {
   lastName          String             @db.VarChar(255)
   phone             String             @db.VarChar(255)
            
-  user              User               @relation(fields: [candidateId], references: [id])
+  user              User               @relation(fields: [candidateId], references: [id], onDelete: Cascade)
   candidateId       String             @db.Uuid
-  jobAdvertisement  Advertisement      @relation(fields: [advertisementId], references: [id])
+  jobAdvertisement  Advertisement      @relation(fields: [advertisementId], references: [id], onDelete: Cascade)
   advertisementId   String             @db.Uuid
 
   createdAt         DateTime           @default(now()) @map("created_at")
@@ -112,9 +112,9 @@ model Advertisement {
   workingTime       String             @db.VarChar(255)
   remoteWork        String             @db.VarChar(255)
 
-  company           Company            @relation(fields: [companyId], references: [id])
+  company           Company            @relation(fields: [companyId], references: [id], onDelete: Cascade)
   companyId         String             @db.Uuid
-  user              User               @relation(fields: [recruiterId], references: [id])
+  user              User               @relation(fields: [recruiterId], references: [id], onDelete: Cascade)
   recruiterId       String             @db.Uuid
   applications      Application[]
 
