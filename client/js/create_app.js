@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (!response.ok) {
             console.error("Erreur lors de la récupération du user:", response.status, response.statusText);
+            window.alert("Veuillez vous connecter!");
+            window.location.href = './login.html';
             return;
         }
 
