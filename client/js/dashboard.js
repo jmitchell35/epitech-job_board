@@ -28,16 +28,17 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
       "duration-300",
       "flex",
       "flex-row",
-      "justify-between",
-      "min-w-[75%]"
+      "justify-center",
+      "items-center",
+      "w-3/4",
     );
     
 
     card.innerHTML = `
-      <div>
-        <h3 class="flex flex-col text-xl font-bold mb-2 text-gray-800 ">${ad.title}</h3>
+      <div class = "flex flex-col w-2/3">
+        <h3 class="text-xl font-bold mb-2 text-gray-800 ">${ad.title}</h3>
         <p class="text-gray-600 mb-4">${ad.shortDescription}</p>
-        <ul id = "ul-${ad.id}" class="text-sm text-gray-500 space-y-1 hidden">
+        <ul id = "ul-${ad.id}" class="text-sm text-gray-500 space-y-1 hidden wrap">
           <li><strong>Description :</strong> ${ad.fullDescription}</li>
           <li><strong>Ville :</strong> ${ad.city}</li>
           <li><strong>Salaire :</strong> ${ad.wages}</li>
@@ -45,12 +46,14 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
           <li><strong>Remote :</strong> ${ad.remoteWork}</li>
         </ul>
       </div>
-      <button id = "btn1-${ad.id}" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition">
-      Read more
-      </button>
-      <button id = "btn2-${ad.id}" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 transition">
-      Apply
-      </button>
+      <div class = "flex flex-col w-1/3">
+        <button id = "btn1-${ad.id}" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 w-full h-50 ">
+        En savoir plus
+        </button>
+        <button id = "btn2-${ad.id}" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 w-full h-50 ">
+        Apply
+        </button>
+      </div>
     `;
     cardContainer.append(card);
 

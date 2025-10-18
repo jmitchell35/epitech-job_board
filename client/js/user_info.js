@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log(err);
         }
 
-        const requestModif2 = new Request(`http://localhost:3000/api/v1/candidates/${userId}`, {
+        const requestModif2 = new Request(`http://localhost:3000/api/v1/candidates/user/${userId}`, {
             method: 'PUT',
             headers: requestHeaders,
             credentials: 'include',
