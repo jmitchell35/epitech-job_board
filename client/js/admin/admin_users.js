@@ -1,57 +1,7 @@
 const localModel = {
   email: { tag: 'input', type: 'email', required: true, maxLength: 255 },
   password: { tag: 'input', type: 'password', required: true, minLength: 8, maxLength: 255 },
-  profile: { tag: 'select', required: true, options: ['USER', 'CANDIDATE', 'RECRUITER'] }
+  profile: { tag: 'select', required: true, options: ['USER', 'CANDIDATE', 'RECRUITER'] },
+  endpoint: 'users',
+  entity: { singular: 'user', plural: 'users'}
 };
-
-document.addEventListener("DOMContentLoaded", async (evt) => {
-  const table = document.getElementById("admin-table");
-  const postButton = document.getElementById("post-button");
-  postButton.addEventListener('click', listenCreateButton);
-
-  const response = await fetch("http://localhost:3000/api/v1/users", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  });
-
-  const entries = await response.json();
-
-  if (!entries || entries.length === 0) {
-    table.innerHTML = '<tr><td>No users available</td></tr>';
-    return;
-  }
-
-  const headers = Object.keys(entries[0]);
-
-  setTableHeaders(table, headers);
-  populateRows(table, headers, entries);
-
-  table.addEventListener('click', async (event) => {
-    if (event.target.classList.contains('delete-button')) {
-      const entryId = event.target.id;
-
-      try {
-        const response = await fetch(`http://localhost:3000/api/v1/users/${entryId}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        });
-
-        if (response.ok) {
-          event.target.closest('tr').remove();
-        } else {
-          console.error('Failed to delete: ', response.status);
-          alert('Failed to delete the entry. Please try again');
-        }
-      } catch (error) {
-        console.error('Error deleting entry:', error);
-        alert('An error occurred. Please try again.');
-      }
-    }
-  });
-});
