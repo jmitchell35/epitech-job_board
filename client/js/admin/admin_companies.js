@@ -1,5 +1,14 @@
+const localModel = {
+  name: { tag: 'input', type: 'text', required: true, minLength: 2, maxLength: 255 },
+  industry: { tag: 'input', type: 'text', required: true, minLength: 2, maxLength: 255 },
+  contactEmail: { tag: 'input', type: 'email', required: true, maxLength: 255 },
+  headOffice: { tag: 'input', type: 'text', required: true, minLength: 2, maxLength: 255 }
+};
+
 document.addEventListener("DOMContentLoaded", async (evt) => {
   const table = document.getElementById("admin-table");
+  const postButton = document.getElementById("post-button");
+  postButton.addEventListener('click', listenCreateButton);
 
   const response = await fetch("http://localhost:3000/api/v1/companies", {
     method: "GET",

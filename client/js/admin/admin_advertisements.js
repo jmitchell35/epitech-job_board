@@ -1,5 +1,20 @@
+const localModel = {
+  title: { tag: 'input', type: 'text', required: true, minLength: 10, maxLength: 255 },
+  shortDescription: { tag: 'input', type: 'text', required: true, minLength: 10, maxLength: 255 },
+  fullDescription: { tag: 'textarea', required: true, minLength: 10 },
+  wages: { tag: 'input', type: 'text', required: true, minLength: 10, maxLength: 255 },
+  city: { tag: 'input', type: 'text', required: true, minLength: 2, maxLength: 255 },
+  workingTime: { tag: 'select', required: true, options: ['Temps plein', 'Temps partiel', 'Stage'] },
+  remoteWork: { tag: 'select', required: true, options: ['Oui', 'Partiel', 'Non'] },
+  companyId: { tag: 'select', required: true, pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', fetchOption: 'api/v1/companies' },
+  recruiterId: { tag: 'select', required: true, pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', fetchOption: 'api/v1/users/profile/RECRUITER' }
+}
+
+
 document.addEventListener("DOMContentLoaded", async (evt) => {
   const table = document.getElementById("admin-table");
+  const postButton = document.getElementById("post-button");
+  postButton.addEventListener('click', listenCreateButton);
 
   const response = await fetch("http://localhost:3000/api/v1/job_advertisements", {
     method: "GET",

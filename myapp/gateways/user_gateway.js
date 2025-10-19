@@ -50,9 +50,30 @@ class UserGateway {
     let deletedData = await prisma.user.delete({
       where: {
         id: uuid
-      }});
+      }
+    });
     console.log(deletedData);
     return deletedData;
+  }
+
+  async findOneByAttribute(attribute, value) {
+    let data = await prisma.user.findMany({
+      where: {
+        [attribute]: value,
+      }
+    });
+    console.log(data);
+    return data;
+  }
+
+  async findManyByAttribute(attribute, value) {
+    let data = await prisma.user.findMany({
+      where: {
+        [attribute]: value,
+      }
+    });
+    console.log(data);
+    return data;
   }
 }
 

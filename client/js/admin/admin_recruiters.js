@@ -1,5 +1,13 @@
+const localModel = {
+  application_email: { tag: 'input', type: 'email', required: true, maxLength: 255 },
+  companyId: { tag: 'select', required: true, pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', fetchOption: 'api/v1/companies' },
+  recruiterId: { tag: 'select', required: true, pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', fetchOption: 'api/v1/users' }
+};
+
 document.addEventListener("DOMContentLoaded", async (evt) => {
   const table = document.getElementById("admin-table");
+  const postButton = document.getElementById("post-button");
+  postButton.addEventListener('click', listenCreateButton);
 
   const response = await fetch("http://localhost:3000/api/v1/recruiters", {
     method: "GET",
