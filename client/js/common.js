@@ -1,6 +1,7 @@
 const loginAnchor = document.getElementById('login-anchor');
 const registerAnchor = document.getElementById('register-anchor');
 const logoutButton = document.getElementById('logout-button');
+const profileAnchor = document.getElementById('profile-anchor');
 
 async function isLoggedIn() {
   const profile = await youHaveTheRightToRemainSilent();
@@ -27,12 +28,14 @@ async function toggleLoginDisplay() {
   if (await isLoggedIn()) {
     loginAnchor.style.display = 'none';
     registerAnchor.style.display = 'none';
+    profileAnchor.style.display = 'inline';
     logoutButton.style.display = 'inline';
 
   } else {
     loginAnchor.style.display = 'inline';
     registerAnchor.style.display = 'inline';
     logoutButton.style.display = 'none';
+    profileAnchor.style.display = 'none';
   }
 }
 
@@ -83,3 +86,5 @@ logoutButton.addEventListener('click', () => {
       console.error('Fetch error: ', error);
     });
 })
+
+toggleLoginDisplay();
