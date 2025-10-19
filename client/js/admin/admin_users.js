@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
       const entryId = event.target.id;
 
       try {
-        const response = await fetch(`http://localhost:3000/api/v1/recruiters/${entryId}`, {
+        const response = await fetch(`http://localhost:3000/api/v1/users/${entryId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
