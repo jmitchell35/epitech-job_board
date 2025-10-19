@@ -72,4 +72,17 @@ candidateRouter.get('/user/:uuid', isAuthenticated, isAuthorized(isAdmin, isCand
   });
 })
 
+candidateRouter.put('/user/:uuid', isAuthenticated, isAuthorized(isAdmin, isCandidateOwner), (req, res) => {
+  const promise = candidateGateway.findOneByAttribute('candidateId', req.params.uuid);
+  promise.then((data) => {
+    const updatePromise = candidateGateway.update(data.id, req.body);
+    updatePromise.then((updatedCandidate) => {
+    res.send(updatedCandidate);
+    })
+  })
+  .catch((error) => {
+    res.send(error);
+  });
+})
+
 export default candidateRouter;
