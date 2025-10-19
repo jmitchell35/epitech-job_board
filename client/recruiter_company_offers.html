@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mes Offres - Espace Recruteur</title>
+  <title>Mon entreprise recrute - Espace recruteur</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -12,27 +12,31 @@
 
   <header class="bg-blue-700 text-white p-4 shadow-md">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 
-        class="text-2xl font-bold cursor-pointer hover:underline"
+      <h1 class="text-2xl font-bold cursor-pointer hover:underline"
         onclick="window.location.href='recruiter_dashboard.html'">
-          Espace Recruteur
+        Espace Recruteur
       </h1>
       <nav class="space-x-6">
-        <a href="/recruiter_create_offer.html" class="hover:underline">Créer une offre</a>
-        <a href="/recruiter_offers.html" class="hover:underline">Les offres de l'entreprise</a>
+        <a href="/recruiter_dashboard.html" class="hover:underline">Accueil recruteur</a>
+        <a href="/recruiter_create_offer.html" class="hover:underline">Publier une offre</a>
+        <a href="/recruiter_company_offers.html" class="hover:underline">Les offres de l'entreprise</a>
         <a href="/recruiter_applications.html" class="hover:underline">Candidatures reçues</a>
-        <a href="/recruiter_infos.html" id="profile-anchor" class="hover:underline">Mes infos</a>
+        <a href="/login.html" id="login-anchor" class="hover:underline">Connexion</a>
+        <a href="/register.html" id="register-anchor" class="hover:underline">Inscription</a>
+        <a href="/user_infos.html" id="profile-anchor" class="hover:underline">Mes infos</a>
         <button id="logout-button" class="hover:underline">Déconnexion</button>
       </nav>
     </div>
   </header>
   <main class="container mx-auto p-6">
-     <section class="text-center mb-10">
-      <h2 class="text-3xl font-bold mb-2 text-black-700">Offres déjà publiées</h2>
-    <section>
-      <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6 offer-container">
-        <p class="text-center col-span-3 text-gray-500">Chargement des offres...</p>
-      </div>
+
+    <section class="text-center mb-10">
+      <h2 class="text-3xl font-bold mb-2">Les offres de votre entreprise</h2>
+      <p class="text-gray-600">Retrouvez les offres de toute votre équipe de recrutement</p>
+    </section>
+
+    <section id="card-container" class="grid gap-6 place-items-center mb-5 min-w-[50%]">
+
     </section>
   </main>
 
@@ -40,6 +44,8 @@
     2025 Job Board — Espace Recruteur
   </footer>
 
-  <script src="/js/recruiter_offers.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/recruiter_company_offers.js"></script>
 </body>
+
 </html>

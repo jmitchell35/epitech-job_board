@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         const user = await response.json();
-        
+
 
         applicationsForm.candidateEmail.value = user.email;
         // Checked
@@ -69,19 +69,19 @@ document.addEventListener("DOMContentLoaded", async () => {
             method: 'POST',
             headers: requestHeaders,
             credentials: 'include',
-            body:JSON.stringify({ 
+            body:JSON.stringify({
                 message: applicationsForm.message.value,
                 candidateEmail: applicationsForm.candidateEmail.value,
                 firstName: applicationsForm.firstName.value,
                 lastName: applicationsForm.lastName.value,
                 phone: applicationsForm.phone.value,
-                candidateId: theCandidateId,
+                candidateId: userId,
                 advertisementId: theAdvertisementId
-
-
             })
         });
-        
+
+        console.log(requestApp);
+
         const appResponse = await fetch(requestApp);
 
         if (appResponse.ok) {

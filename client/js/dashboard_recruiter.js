@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", async (evt) => {
   const cardContainer = document.getElementById("card-container");
 
@@ -10,10 +9,8 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
     credentials: "include",
   });
 
-
-
   const ads = await response.json();
-  console.log("ADS JSON:", ads); 
+  console.log("ADS JSON:", ads);
 
   ads.forEach((ad) => {
     const card = document.createElement("article");
@@ -32,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
       "items-center",
       "w-3/4",
     );
-    
+
 
     card.innerHTML = `
       <div class = "flex flex-col w-2/3">

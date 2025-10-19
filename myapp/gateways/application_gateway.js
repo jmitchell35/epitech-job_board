@@ -45,6 +45,16 @@ class ApplicationGateway {
     console.log(deletedData);
     return deletedData;
   }
+
+  async findManyByAttribute(attribute, value) {
+    let data = await prisma.application.findMany({
+      where: {
+        [attribute]: value,
+      }
+    });
+    console.log(data);
+    return data;
+  }
 }
 
 export default new ApplicationGateway();

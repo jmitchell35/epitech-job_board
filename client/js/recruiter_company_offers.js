@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", async (evt) => {
   const cardContainer = document.getElementById("card-container");
+  const companyId = getCookie("companyId");
 
-  const response = await fetch("http://localhost:3000/api/v1/job_advertisements", {
+  const response = await fetch(`http://localhost:3000/api/v1/job_advertisements/company/${companyId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
       <div class = "flex flex-col w-2/3">
         <h3 class="text-xl font-bold mb-2 text-gray-800 ">${ad.title}</h3>
         <p class="text-gray-600 mb-4">${ad.shortDescription}</p>
-        <ul id = "ul-${ad.id}" class="text-sm text-gray-500 space-y-1 hidden wrap">
+        <ul id = "ul-${ad.id}" class="text-sm text-gray-500 space-y-1 hidden">
           <li><strong>Description :</strong> ${ad.fullDescription}</li>
           <li><strong>Ville :</strong> ${ad.city}</li>
           <li><strong>Salaire :</strong> ${ad.wages}</li>
@@ -46,18 +47,16 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
         </ul>
       </div>
       <div class = "flex flex-col w-1/3">
-        <button id = "btn1-${ad.id}" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 w-full h-50 ">
+        <button id = "btn1-${ad.id}" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-xl  hover:bg-blue-700 transition ml-6">
         En savoir plus
         </button>
-        <button id = "btn2-${ad.id}" class="mt-4 bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700 w-full h-50 ">
-        Apply
-        </button>
       </div>
-    `;
+
+      `;
     cardContainer.append(card);
 
+
     const btn1 = card.querySelector(`#btn1-${ad.id}`);
-    const btn2 = card.querySelector(`#btn2-${ad.id}`);
     const ul = card.querySelector(`#ul-${ad.id}`);
 
       btn1.addEventListener('click', () => {
@@ -69,8 +68,5 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
         }
       });
 
-      btn2.addEventListener('click', () => {
-        window.location.href=`./make_application.html?advertisementId=${ad.id}`;
-      });
   });
 });

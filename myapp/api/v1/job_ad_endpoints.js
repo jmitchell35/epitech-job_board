@@ -6,6 +6,7 @@ import isAuthenticated from '../../middlewares/is_authenticated.js';
 import isAdmin from '../../middlewares/helpers/is_admin.js';
 import isRecruiter from '../../middlewares/helpers/is_recruiter.js';
 import isAdvertisementOwner from '../../middlewares/helpers/is_ad_owner.js';
+import isSelf from '../../middlewares/helpers/is_self.js';
 
 // instanciate a router object for v1 routes
 const jobAdRouter = express.Router({mergeParams: true});
@@ -57,6 +58,28 @@ jobAdRouter.put('/:uuid', isAuthenticated, isAuthorized(isAdvertisementOwner, is
 
 jobAdRouter.delete('/:uuid', isAuthenticated, isAuthorized(isAdmin), (req, res) => {
   const promise = jobAdGateway.delete(req.params.uuid);
+  promise.then((data) => {
+    res.send(data);
+  })
+  .catch((error) => {
+    res.send(error);
+    console.log(error);
+  });
+});
+
+jobAdRouter.get('/company/:uuid', (req, res) => {
+  const promise = jobAdGateway.findManyByAttribute('companyId', req.params.uuid);
+  promise.then((data) => {
+    res.send(data);
+  })
+  .catch((error) => {
+    res.send(error);
+    console.log(error);
+  });
+});
+
+jobAdRouter.get('/recruiter/:uuid', isAuthenticated, isAuthorized(isAdmin, isSelf), (req, res) => {
+  const promise = jobAdGateway.findManyByAttribute('recruiterId', req.params.uuid);
   promise.then((data) => {
     res.send(data);
   })

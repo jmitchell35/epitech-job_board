@@ -63,4 +63,14 @@ applicationRouter.delete('/:uuid', isAuthenticated, isAuthorized(isAdmin), (req,
   });
 })
 
+applicationRouter.get('/offer/:uuid', isAuthenticated, isAuthorized(isApplicationRecruiter, isAdmin), (req, res) => {
+  const promise = applicationGateway.findManyByAttribute('advertisementId', req.params.uuid);
+  promise.then((data) => {
+    res.send(data);
+  })
+  .catch((error) => {
+    res.send(error);
+  });
+})
+
 export default applicationRouter;
