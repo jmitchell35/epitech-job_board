@@ -2,6 +2,8 @@
 
 ## Pre-requisites
 
+### Running on a Linux distribution or a Linux container
+
 ### Node.js installed
 
 [Download and install node.js for Linux](https://nodejs.org/en/download)
