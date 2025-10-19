@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modifier ses informations</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-50 text-gray-800">
+
+  <header class="bg-blue-700 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Job Board</h1>
+      <nav class="space-x-6">
+        <a href="/recruiter_dashboard.html" class="hover:underline">Nos offres</a>
+        <a href="/login.html" id="login-anchor" class="hover:underline">Connexion</a>
+        <a href="/register.html" id="register-anchor" class="hover:underline">Inscription</a>
+        <button id="logout-button" class="hover:underline">Déconnexion</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto p-8">
+    <section class="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6 text-center text-blue-700">
+        Mes informations:
+      </h2>
+
+      <form id="info-form" class="space-y-4">
+
+        <div>
+          <label class="block font-medium mb-1">Adresse e-mail personnel</label>
+          <input name="userEmail" type="email" class="w-full border p-2 rounded" required/>
+        </div>
+
+        <div>
+          <label class="block font-medium mb-1">password</label>
+          <input name="password" type="text" class="w-full border p-2 rounded" required/>
+        </div>
+
+        <div>
+          <label class="block font-medium mb-1">Adresse e-mail de contact</label>
+          <input name="companyEmail" type="email" class="w-full border p-2 rounded" required/>
+        </div>
+
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white w-full py-2 rounded mt-4">
+          Modifier mon profile.
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="text-center text-gray-500 p-4 bg-gray-100 mt-8">
+    2025 Job Board
+  </footer>
+
+  <script src="./js/common.js"></script>
+  <script src="./js/recruiter_info.js"></script>
+
+</body>
+</html>
