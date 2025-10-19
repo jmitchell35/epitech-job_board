@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inscription - Recruteur</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<script src="js/add_company.js"></script>
+
 <body class="bg-gray-50 text-gray-800">
 
   <header class="bg-blue-700 text-white p-4 shadow-md">
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-2xl font-bold">Inscription Recruteur</h1>
-      <a href="register.html" class="hover:underline">Retour</a>
+      <a href="/register.html" class="hover:underline">Retour</a>
     </div>
   </header>
 
@@ -22,13 +24,15 @@
 
       <input type="email" name="email" placeholder="Email professionnel" class="w-full border p-2 rounded" required />
       <input type="password" name="password" placeholder="Mot de passe" class="w-full border p-2 rounded" required />
-      <input type="email" name="application_email" placeholder="Email de réception des candidatures" class="w-full border p-2 rounded" required />
+      <input type="email" name="application_email" placeholder="Email de réception des candidatures"
+        class="w-full border p-2 rounded" required />
 
       <div class="flex gap-2 items-center">
         <select id="company-select" name="companyName" class="flex-1 border p-2 rounded" required>
           <option value="">Sélectionnez votre entreprise</option>
         </select>
-        <button type="button" id="toggle-company-form" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
+        <button type="button" id="toggle-company-form"
+          class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
           Nouvelle entreprise
         </button>
       </div>
@@ -43,7 +47,8 @@
 
       <input name="name" placeholder="Nom de l'entreprise" class="w-full border p-2 rounded" required />
       <input name="industry" placeholder="Secteur d'activité" class="w-full border p-2 rounded" required />
-      <input type="email" name="contactEmail" placeholder="Email de contact" class="w-full border p-2 rounded" required />
+      <input type="email" name="contactEmail" placeholder="Email de contact" class="w-full border p-2 rounded"
+        required />
       <input name="headOffice" placeholder="Adresse du siège social" class="w-full border p-2 rounded" required />
 
       <div class="flex gap-2">
@@ -59,13 +64,12 @@
     <div id="msg" class="text-center mt-4 text-blue-600 font-medium"></div>
   </main>
 
-  <script src = "js/recruiter_signup.js"></script>
-
-
   <footer class="text-center text-gray-500 p-4 bg-gray-100">
     2025 Job Board
   </footer>
 
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/add_company.js"></script>
+  <script src="/js/recruiter_signup.js"></script>
 </body>
+
 </html>

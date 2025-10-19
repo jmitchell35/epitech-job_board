@@ -1,5 +1,15 @@
 const loginForm = document.getElementById('login-form');
 
+function parseJwt(token) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+}
+
 loginForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
@@ -18,21 +28,26 @@ loginForm.addEventListener('submit', (evt) => {
 
   fetch(request)
     .then((response) => {
-      return response;
-    })
-    .then((response) => {
       if (response.ok) {
-
-        // if (response.profile.value === "RECRUITER"){
-        //   window.location.href = './recruiter_dashboard.html';
-        // } else if (response.profile.value === "ADMIN") {
-        //   window.location.href = './admin_dashboard.html';
-        // } else {
-        console.log('Response ok');
+        console.log(response);
+        return response.json();
+      }
+      throw new Error('Login failed');
+    })
+    .then((data) => {
+      const { profile } = data;
+      if (profile === 'ADMIN') {
+        console.log('admin');
+        window.location.href = './admin/admin_dashboard.html';
+      } else if (profile === 'RECRUITER') {
+        console.log('recruiter');
+        window.location.href = './recruiter_dashboard.html';
+      } else {
+        console.log('user');
         window.location.href = './index.html';
       }
     })
     .catch(console.error);
 
-    toggleLoginDisplay();
+  toggleLoginDisplay();
 })

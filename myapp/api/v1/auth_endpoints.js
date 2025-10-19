@@ -3,6 +3,7 @@ import express from 'express';
 import userGateway from '../../gateways/user_gateway.js';
 import genAuthToken from '../../helpers/genAuthToken.js';
 import recruiterGateway from '../../gateways/recruiter_gateway.js';
+import isAuthenticated from '../../middlewares/is_authenticated.js';
 
 
 // instanciate a router object for v1 routes
@@ -24,7 +25,7 @@ authRouter.post('/login', (req, res) => {
       res.cookie("authToken", jwtToken, {
         httpOnly: true,
         // secure: true,
-        sameSite: 'lax',
+        sameSite: 'strict',
         maxAge: 24 * 60 * 60 * 1000
       });
 
@@ -51,10 +52,10 @@ authRouter.post('/login', (req, res) => {
             sameSite: 'strict'
           });
 
-          res.json(jwtToken);
+          res.json({ profile });
         })
       } else {
-        res.json(jwtToken);
+        res.json({ profile });
       }
     } else {
       res.status(401).json({ message: "Identifiants incorrects." });
@@ -74,7 +75,14 @@ authRouter.get('/logout', (req, res) => {
   });
 
   res.clearCookie("authToken");
+  res.clearCookie("userId");
+  res.clearCookie("companyId");
   res.sendStatus(200);
+});
+
+authRouter.get('/readMeMyRights', isAuthenticated, (req, res) => {
+  const profile = req.user.profile;
+  res.status(200).json({ profile });
 });
 
 export default authRouter;
