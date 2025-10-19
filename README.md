@@ -40,8 +40,18 @@ Replace with your DB's values.
 $ npx prisma generate
 ```
 
-## Run the app
+### Run your DB
 
 ```bash
-node job_board.js
+$ npx prisma studio
+```
+
+## Run the front & the back
+
+```bash
+$ node job_board.js
+```
+
+```bash
+$ node client-dev-server.js
 ```
