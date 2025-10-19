@@ -2,7 +2,6 @@
 import express from 'express';
 import userGateway from '../../gateways/user_gateway.js';
 import genAuthToken from '../../helpers/genAuthToken.js';
-import recruiterGateway from '../../gateways/recruiter_gateway.js';
 import isAuthorized from '../../middlewares/is_authorized.js';
 import isAuthenticated from '../../middlewares/is_authenticated.js';
 import isAdmin from '../../middlewares/helpers/is_admin.js';
@@ -84,6 +83,17 @@ userRouter.put('/:uuid', isAuthenticated, isAuthorized(isSelf, isAdmin), (req, r
 
 userRouter.delete('/:uuid', isAuthenticated, isAuthorized(isAdmin), (req, res) => {
   const promise = userGateway.delete(req.params.uuid);
+  promise.then((data) => {
+    res.send(data);
+  })
+    .catch((error) => {
+      console.log(error);
+      res.send(error);
+    });
+})
+
+userRouter.get('/profile/:profile', isAuthenticated, isAuthorized(isAdmin), (req, res) => {
+  const promise = userGateway.findManyByAttribute('profile', req.params.profile);
   promise.then((data) => {
     res.send(data);
   })
