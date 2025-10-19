@@ -74,4 +74,30 @@ recruiterRouter.delete('/:uuid', isAuthenticated, isAuthorized(isAdmin), (req, r
   });
 });
 
+recruiterRouter.get('/user/:uuid', isAuthenticated, isAuthorized(isAdmin, isRecruiterOwner), (req, res) => {
+  const promise = recruiterGateway.findOneByAttribute('recruiterId', req.params.uuid);
+  promise.then((data) => {
+    res.send(data);
+  })
+  .catch((error) => {
+    res.send(error);
+  });
+})
+
+recruiterRouter.put('/user/:uuid', isAuthenticated, isAuthorized(isAdmin, isRecruiterOwner), (req, res) => {
+  const promise = recruiterGateway.findOneByAttribute('recruiterId', req.params.uuid);
+  promise.then((data) => {
+    const updatePromise = recruiterGateway.update(data.id, req.body);
+    updatePromise.then((updatedRecruiter) => {
+    res.send(updatedRecruiter);
+    })
+  })
+  .catch((error) => {
+    res.send(error);
+  });
+})
+
+
+
+
 export default recruiterRouter;

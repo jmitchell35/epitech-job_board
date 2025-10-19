@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         informationForm.password.value = usersEmail.password;
         // Checked
 
-        const userResponse = await fetch(`http://localhost:3000/api/v1/candidates/user/${userId}`, {
+        const userResponse = await fetch(`http://localhost:3000/api/v1/recruiters/user/${userId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -47,10 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         const user = await userResponse.json();
-            informationForm.firstName.value = user.firstName;
-            informationForm.lastName.value = user.lastName;
-            informationForm.phone.value = user.phone;
-            informationForm.message.value = user.message;
+            informationForm.companyEmail.value = user.application_email;
 
     } catch (err) {
         console.error("Erreur fetch candidats :", err);
@@ -80,25 +77,21 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log(err);
         }
 
-        const requestModif2 = new Request(`http://localhost:3000/api/v1/candidates/user/${userId}`, {
+        const requestModif2 = new Request(`http://localhost:3000/api/v1/recruiters/user/${userId}`, {
             method: 'PUT',
             headers: requestHeaders,
             credentials: 'include',
             body:JSON.stringify({ 
-                firstName: informationForm.firstName.value,
-                lastName: informationForm.lastName.value,
-                phone: informationForm.phone.value,
-                message: informationForm.message.value,
-
+                application_email: informationForm.companyEmail.value,
             })
         });
 
         const modifCandidate = await fetch(requestModif2);
 
         if (modifCandidate.ok) {
-            console.log('modifCandidate ok');
+            console.log('modifRecruiter ok');
             window.alert("Vous avez modifié votre profil!");
-            window.location.href = './index.html';
+            window.location.href = './recruiter_dashboard.html';
         } else{
             console.log(err);
         }
