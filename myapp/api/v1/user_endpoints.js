@@ -63,28 +63,12 @@ userRouter.post('/', (req, res) => {
     });
 
     console.log(profile);
-
-    if (profile === 'RECRUITER') {
-      const recruiterPromise = recruiterGateway.findOneByAttribute('recruiterId', user.id);
-      recruiterPromise.then((recruiter) => {
-        const { companyId } = recruiter;
-
-        res.cookie('companyId', companyId, {
-          httpOnly: false,
-          // secure: true,
-          sameSite: 'strict'
-        });
-
-        res.send(data);
-      })
-    } else {
-      res.send(data);
-    }
+    res.send(data);
   })
-    .catch((error) => {
-      console.log(error);
-      res.send(error);
-    });
+  .catch((error) => {
+    console.log(error);
+    res.send(error);
+  });
 })
 
 userRouter.put('/:uuid', isAuthenticated, isAuthorized(isSelf, isAdmin), (req, res) => {

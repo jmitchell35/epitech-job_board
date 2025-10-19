@@ -11,7 +11,7 @@ candidateForm.addEventListener("submit", async (evt) => {
         method: 'POST',
         headers: requestHeaders,
         credentials: 'include',
-        body:JSON.stringify({ 
+        body: JSON.stringify({
             email: candidateForm.email.value,
             password: candidateForm.password.value,
             profile: "USER"
@@ -21,30 +21,26 @@ candidateForm.addEventListener("submit", async (evt) => {
     const userResponse = await fetch(requestUser);
 
     if (userResponse.ok) {
-        console.log('Response ok');
-    }
-    
+        const userData = await userResponse.json();
+        const userId = userData.id;
 
-    const userData = await userResponse.json();
-    const userId = userData.id; 
+        const requestCandidate = new Request('http://localhost:3000/api/v1/candidates', {
+            method: 'POST',
+            headers: requestHeaders,
+            credentials: 'include',
+            body: JSON.stringify({
+                phone: candidateForm.phone.value,
+                message: candidateForm.message.value,
+                firstName: candidateForm.first_name.value,
+                lastName: candidateForm.last_name.value,
+                candidateId: userId
+            })
+        });
 
-    const requestCandidate = new Request('http://localhost:3000/api/v1/candidates', {
-        method: 'POST',
-        headers: requestHeaders,
-        credentials: 'include',
-        body:JSON.stringify({ 
-            phone: candidateForm.phone.value,
-            message: candidateForm.message.value,
-            firstName: candidateForm.first_name.value,
-            lastName: candidateForm.last_name.value,
-            candidateId: userId
-        })
-    });
+        const candidateResponse = await fetch(requestCandidate);
 
-    const candidateResponse = await fetch(requestCandidate);
-
-    if (candidateResponse.ok) {
-        console.log('Response ok');
-        window.location.href = './index.html';
+        if (candidateResponse.ok) {
+            window.location.href = './index.html';
+        }
     }
 });

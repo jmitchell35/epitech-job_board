@@ -36,6 +36,14 @@ recruiterRouter.get('/:uuid', isAuthenticated, isAuthorized(isAdmin, isRecruiter
 recruiterRouter.post('/', isAuthenticated, isAuthorized(isRecruiter, isAdmin), (req, res) => {
   const promise = recruiterGateway.create(req.body);
   promise.then((data) => {
+    const { companyId } = data;
+
+        res.cookie('companyId', companyId, {
+          httpOnly: false,
+          // secure: true,
+          sameSite: 'strict'
+        });
+
     res.send(data);
   })
   .catch((error) => {
