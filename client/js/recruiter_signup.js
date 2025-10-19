@@ -11,7 +11,7 @@ recruiterForm.addEventListener("submit", async (evt) => {
         method: 'POST',
         headers: requestHeaders,
         credentials: 'include',
-        body:JSON.stringify({ 
+        body: JSON.stringify({
             email: recruiterForm.email.value,
             password: recruiterForm.password.value,
             profile: "RECRUITER"
@@ -21,33 +21,25 @@ recruiterForm.addEventListener("submit", async (evt) => {
     const userResponse = await fetch(requestUser);
 
     if (userResponse.ok) {
-        console.log('Response ok');
-    }
-    
+        const userData = await userResponse.json();
+        const userId = userData.id;
 
-    const userData = await userResponse.json();
-    const userId = userData.id; 
-
-    console.log(recruiterForm.companyName.id);
-    console.log(recruiterForm.companyName.value);
-
-    const requestRecruiter = new Request('http://localhost:3000/api/v1/recruiters', {
-        method: 'POST',
-        headers: requestHeaders,
-        credentials: "include",
-        body:JSON.stringify({ 
-            application_email: recruiterForm.application_email.value,
-            companyId: recruiterForm.companyName.value,
-            recruiterId: userId
+        const requestRecruiter = new Request('http://localhost:3000/api/v1/recruiters', {
+            method: 'POST',
+            headers: requestHeaders,
+            credentials: "include",
+            body: JSON.stringify({
+                application_email: recruiterForm.application_email.value,
+                companyId: recruiterForm.companyName.value,
+                recruiterId: userId
+            })
         })
-    });
 
+        const recruiterResponse = await fetch(requestRecruiter);
 
-
-    const recruiterResponse = await fetch(requestRecruiter);
-
-    if (recruiterResponse.ok) {
-        console.log('Response ok');
-        window.location.href = './recruiter_dashboard.html';
-    }
+        if (recruiterResponse.ok) {
+            console.log('Response ok');
+            window.location.href = './recruiter_dashboard.html';
+        }
+    };
 });
