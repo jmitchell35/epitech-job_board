@@ -28,16 +28,17 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
       "duration-300",
       "flex",
       "flex-row",
-      "justify-between",
-      "min-w-[75%]"
+      "justify-center",
+      "items-center",
+      "w-3/4",
     );
     
 
     card.innerHTML = `
-      <div>
-        <h3 class="flex flex-col text-xl font-bold mb-2 text-gray-800 ">${ad.title}</h3>
+      <div class = "flex flex-col w-2/3">
+        <h3 class="text-xl font-bold mb-2 text-gray-800 ">${ad.title}</h3>
         <p class="text-gray-600 mb-4">${ad.shortDescription}</p>
-        <ul id = "ul-${ad.advertisement_id}" class="text-sm text-gray-500 space-y-1 hidden">
+        <ul id = "ul-${ad.id}" class="text-sm text-gray-500 space-y-1 hidden">
           <li><strong>Description :</strong> ${ad.fullDescription}</li>
           <li><strong>Ville :</strong> ${ad.city}</li>
           <li><strong>Salaire :</strong> ${ad.wages}</li>
@@ -45,8 +46,8 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
           <li><strong>Remote :</strong> ${ad.remoteWork}</li>
         </ul>
       </div>
-      <div class = "flex flex-col">
-        <button id = "btn1-${ad.advertisement_id}" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-xl  hover:bg-blue-700 transition ml-6">
+      <div class = "flex flex-col w-1/3">
+        <button id = "btn1-${ad.id}" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-xl  hover:bg-blue-700 transition ml-6">
         En savoir plus
         </button>
       </div>
@@ -55,8 +56,8 @@ document.addEventListener("DOMContentLoaded", async (evt) => {
     cardContainer.append(card);
 
 
-    const btn1 = card.querySelector(`#btn1-${ad.advertisement_id}`);
-    const ul = card.querySelector(`#ul-${ad.advertisement_id}`);
+    const btn1 = card.querySelector(`#btn1-${ad.id}`);
+    const ul = card.querySelector(`#ul-${ad.id}`);
 
       btn1.addEventListener('click', () => {
         ul.classList.toggle('hidden');
