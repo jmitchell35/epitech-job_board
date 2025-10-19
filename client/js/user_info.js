@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
     console.log("DOM chargé");
+    let candidateProfile;
 
     const informationForm = document.getElementById("info-form");
     if (!informationForm) {
@@ -26,14 +27,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             return;
         }
 
-        const usersEmail = await response.json();
-        
+        const user = await response.json();
 
-        informationForm.userEmail.value = usersEmail.email;
-        informationForm.password.value = usersEmail.password;
+
+        informationForm.userEmail.value = user.email;
+        informationForm.password.value = user.password;
         // Checked
 
-        const userResponse = await fetch(`http://localhost:3000/api/v1/candidates/user/${userId}`, {
+        const candidateResponse = await fetch(`http://localhost:3000/api/v1/candidates/user/${userId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -41,16 +42,18 @@ document.addEventListener("DOMContentLoaded", async () => {
             credentials: "include",
         });
 
-        if (!userResponse.ok) {
-            console.error("Erreur lors de la récupération du candidat :", userResponse.status, userResponse.statusText);
+        if (!candidateResponse.ok) {
+            console.error("Erreur lors de la récupération du candidat :", candidateResponse.status, candidateResponse.statusText);
             return;
         }
 
-        const user = await userResponse.json();
-            informationForm.firstName.value = user.firstName;
-            informationForm.lastName.value = user.lastName;
-            informationForm.phone.value = user.phone;
-            informationForm.message.value = user.message;
+        candidateProfile = await candidateResponse.json();
+        console.log(candidateProfile);
+        console.log(candidateProfile.id);
+            informationForm.firstName.value = candidateProfile.firstName;
+            informationForm.lastName.value = candidateProfile.lastName;
+            informationForm.phone.value = candidateProfile.phone;
+            informationForm.message.value = candidateProfile.message;
 
     } catch (err) {
         console.error("Erreur fetch candidats :", err);
@@ -66,12 +69,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             method: 'PUT',
             headers: requestHeaders,
             credentials: 'include',
-            body:JSON.stringify({ 
+            body:JSON.stringify({
                 email: informationForm.userEmail.value,
                 password: informationForm.password.value,
             })
         });
-        
+
         const modifEmailPassword = await fetch(requestModif);
 
         if (modifEmailPassword.ok) {
@@ -80,11 +83,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log(err);
         }
 
-        const requestModif2 = new Request(`http://localhost:3000/api/v1/candidates/user/${userId}`, {
+        const requestModif2 = new Request(`http://localhost:3000/api/v1/candidates/${candidateProfile.id}`, {
             method: 'PUT',
             headers: requestHeaders,
             credentials: 'include',
-            body:JSON.stringify({ 
+            body:JSON.stringify({
                 firstName: informationForm.firstName.value,
                 lastName: informationForm.lastName.value,
                 phone: informationForm.phone.value,
