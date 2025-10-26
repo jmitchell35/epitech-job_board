@@ -31,7 +31,7 @@ $ npm install
 # one found in a remote Prisma Postgres URL, does not contain any sensitive information.
 
 DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA"
-JWT_SECRET="your-random-string-key"
+JWT_SECRET="your-random-string-encoding-key"
 ```
 
 Replace with your DB's values.
